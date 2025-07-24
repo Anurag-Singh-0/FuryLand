@@ -60,7 +60,7 @@ function Navbar() {
             className="text-black/70 cursor-pointer"
           />
           <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
-            <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-slate-600 rounded-lg">
+            <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-white outline outline-black/30 text-slate-600 rounded-sm">
               <p className="cursor-pointer hover:text-black duration-200">
                 My Profile
               </p>
