@@ -1,9 +1,15 @@
 import { images } from "../Images";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
-import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
+import MenuIcon from "@mui/icons-material/Menu";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import { useState } from "react";
 
 function Navbar() {
+  const [open, setOpen] = useState(false);
+
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Collection", path: "/collection" },
@@ -13,12 +19,10 @@ function Navbar() {
 
   return (
     <div className="flex items-center justify-between py-5 font-medium">
-      <img
-        src={images.logoDark}
-        className="w-65 h-10 object-cover"
-        alt="logo"
-      />
+      {/* Logo */}
+      <img src={images.logoDark} className="logo" alt="logo" />
 
+      {/* Nav Links */}
       <ul className="hidden sm:flex gap-5 text-sm uppercase">
         {navItems.map((item) => (
           <NavLink
@@ -44,10 +48,75 @@ function Navbar() {
         ))}
       </ul>
 
-      <div className="flex items-center gap-6">
-        <SearchIcon sx={{ fontSize: 30 }} className="cursor-pointer" />
+      {/* Action Buttons */}
+      <div className="flex items-center gap-4">
+        <SearchIcon
+          sx={{ fontSize: 30 }}
+          className="cursor-pointer text-black/70"
+        />
         <div className="group relative">
-          <PersonOutlinedIcon sx={{ fontSize: 30 }} />
+          <PersonOutlinedIcon
+            sx={{ fontSize: 30 }}
+            className="text-black/70 cursor-pointer"
+          />
+          <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
+            <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-slate-600 rounded-lg">
+              <p className="cursor-pointer hover:text-black duration-200">
+                My Profile
+              </p>
+              <p className="cursor-pointer hover:text-black duration-200">
+                Orders
+              </p>
+              <p className="cursor-pointer hover:text-black duration-200">
+                Logout
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Cart icon */}
+        <Link to="/cart" className="relative">
+          <LocalMallOutlinedIcon className="text-black/70" />
+          <p className="aspect-square text-[8px] bg-black text-white rounded-full text-center w-4 leading-4 absolute right-[-5px] bottom-[-5px]">
+            10
+          </p>
+        </Link>
+
+        {/* Hamburger Menu */}
+        <div className="sm:hidden" onClick={() => setOpen(true)}>
+          <MenuIcon
+            className="cursor-pointer text-black/70"
+            sx={{ fontSize: 30 }}
+          />
+        </div>
+
+        {/* Sidebar menu for small screens */}
+        <div
+          className={`bg-white absolute top-0 right-0 bottom-0 overflow-hidden transition-all ${
+            open ? "w-full" : "w-0"
+          }`}
+        >
+          <div className="flex flex-col text-gray-800">
+            <div
+              className="flex items-center gap-1 p-3 text-black"
+              onClick={() => setOpen(false)}
+            >
+              <ArrowBackIosNewIcon sx={{ fontSize: 18 }} />
+              <span>Back</span>
+            </div>
+
+            {navItems.map((item) => (
+              <NavLink
+                key={item.name}
+                to={item.path}
+                onClick={() => setOpen(false)}
+              >
+                <p className="uppercase border-b-2 border-black/20 py-3 pl-6">
+                  {item.name}
+                </p>
+              </NavLink>
+            ))}
+          </div>
         </div>
       </div>
     </div>
