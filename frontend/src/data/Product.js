@@ -1,0 +1,81 @@
+import { images } from "../Images";
+
+export const Products = [
+  // Men Category
+  {
+    id: 1,
+    brand: "U.S. POLO ASSN.",
+    desc: "Men Tailored Fit Solid Cut Away Collar Casual Shirt",
+    price: 80,
+    image: [images.shirt1a, images.shirt1b, images.shirt1c, images.shirt1d],
+    category: "Man",
+    subCategory: "Topwear",
+    sizes: ["M", "L", "XL"],
+    date: new Date().toLocaleDateString(),
+    bestseller: true,
+  },
+  {
+    id: 2,
+    brand: "Levi's",
+    desc: "Men Slim Fit Mid-Rise Jeans",
+    price: 120,
+    image: [images.jeans1a, images.jeans1b, images.jeans1c, images.jeans1d],
+    category: "Man",
+    subCategory: "Bottomwear",
+    sizes: ["32", "34", "36"],
+    date: new Date().toLocaleDateString(),
+    bestseller: false,
+  },
+
+  // Women Category
+  {
+    id: 3,
+    brand: "Zara",
+    desc: "Women Floral Print A-Line Dress",
+    price: 150,
+    image: [images.dress1a, images.dress1b, images.dress1c],
+    category: "Woman",
+    subCategory: "Topwear",
+    sizes: ["S", "M", "L"],
+    date: new Date().toLocaleDateString(),
+    bestseller: true,
+  },
+  {
+    id: 4,
+    brand: "H&M",
+    desc: "Women High-Rise Trousers with Belt",
+    price: 90,
+    image: [images.trousers1a, images.trousers1b],
+    category: "Woman",
+    subCategory: "Bottomwear",
+    sizes: ["S", "M", "L", "XL"],
+    date: new Date().toLocaleDateString(),
+    bestseller: false,
+  },
+
+  // Kids Category
+  {
+    id: 5,
+    brand: "Babyhug",
+    desc: "Kids Cotton Printed T-Shirt",
+    price: 40,
+    image: [images.kidShirt1a, images.kidShirt1b],
+    category: "Kids",
+    subCategory: "Topwear",
+    sizes: ["XS", "S", "M"],
+    date: new Date().toLocaleDateString(),
+    bestseller: true,
+  },
+  {
+    id: 6,
+    brand: "UCB Kids",
+    desc: "Kids Denim Shorts",
+    price: 60,
+    image: [images.kidJeans1a, images.kidJeans1b],
+    category: "Kids",
+    subCategory: "Bottomwear",
+    sizes: ["S", "M"],
+    date: new Date().toLocaleDateString(),
+    bestseller: false,
+  },
+];

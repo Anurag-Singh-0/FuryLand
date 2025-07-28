@@ -1,11 +1,18 @@
 import { images } from "../Images";
 import { Link, NavLink } from "react-router-dom";
+
+// Meterial Icons
 import SearchIcon from "@mui/icons-material/Search";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+
+//Hook
 import { useState } from "react";
+
+//Framer Motion
+import { easeInOut, motion } from "framer-motion";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
@@ -18,9 +25,16 @@ function Navbar() {
   ];
 
   return (
-    <div className="flex items-center justify-between py-5 font-medium">
+    <motion.div
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, type: "tween" }}
+      className="flex items-center justify-between py-5 font-medium"
+    >
       {/* Logo */}
-      <img src={images.logoDark} className="logo" alt="logo" />
+      <Link to="/">
+        <motion.img src={images.logoDark} className="logo" alt="logo" />
+      </Link>
 
       {/* Nav Links */}
       <ul className="hidden sm:flex gap-5 text-sm uppercase">
@@ -119,7 +133,7 @@ function Navbar() {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
