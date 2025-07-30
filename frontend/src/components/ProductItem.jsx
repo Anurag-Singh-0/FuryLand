@@ -15,7 +15,7 @@ function ProductItem({ id, image, name, price }) {
           <img
             src={image[0]}
             alt="thumbnail"
-            className="w-full h-50 object-cover hover:scale-106 transition-transform duration-200"
+            className="w-full h-50 object-cover object-center hover:scale-106 duration-200"
           />
         </div>
         <div className="px-4 py-2">

@@ -1,10 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap");
 
 @import "tailwindcss";
 
 * {
   font-family: "Montserrat";
+}
+
+body::selection {
+  background-color:greenyellow;
+  color: black;
 }
 
 .Fjalla {
@@ -19,7 +24,7 @@
 
   a.active {
     background-color: black;
-    color:#fff;
+    color: #fff;
   }
 }
 

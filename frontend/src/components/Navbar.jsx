@@ -64,10 +64,14 @@ function Navbar() {
 
       {/* Action Buttons */}
       <div className="flex items-center gap-4">
-        <SearchIcon
-          sx={{ fontSize: 30 }}
-          className="cursor-pointer text-black/70"
-        />
+        <div className="lg:outline lg:outline-black/30 p-1 rounded flex items-center gap-2">
+          <SearchIcon
+            sx={{ fontSize: 25 }}
+            className="cursor-pointer text-black/70"
+          />
+          <input type="text" placeholder="Search by product" className="text-sm  outline-none hidden lg:block"/>
+        </div>
+
         <div className="group relative">
           <PersonOutlinedIcon
             sx={{ fontSize: 30 }}

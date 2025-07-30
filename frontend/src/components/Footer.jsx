@@ -3,7 +3,7 @@ import { images } from "../Images";
 
 function Footer() {
   return (
-    <div className="mt-40">
+    <div className="mt-20">
       <div className="flex justify-between flex-col lg:flex-row gap-8 mb-8">
         <div className="flex flex-col w-full gap-3 lg:w-[40%]">
           <img src={images.logoDark} alt="Logo" className="w-[10rem] mb-3" />

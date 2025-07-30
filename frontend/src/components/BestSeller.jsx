@@ -9,13 +9,13 @@ function BestSeller() {
 
   useEffect(() => {
     const bestProducts = Products.filter((item) => item.bestseller);
-    setBestSeller(bestProducts.slice(0, 3));
+    setBestSeller(bestProducts.slice(0, 6));
   }, []);
 
   return (
     <div className="mb-10">
       <Title text1={"Best"} text2={"Seller"} />
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
         {bestseller.map((item,idx) => (
           <ProductItem
             name={item.brand}
