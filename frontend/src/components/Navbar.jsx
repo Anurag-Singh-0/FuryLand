@@ -9,13 +9,15 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 //Hook
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 //Framer Motion
-import { easeInOut, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import { ShopContext } from "../context/ShopContext";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const { setShowSearch } = useContext(ShopContext);
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -64,13 +66,11 @@ function Navbar() {
 
       {/* Action Buttons */}
       <div className="flex items-center gap-4">
-        <div className="lg:outline lg:outline-black/30 p-1 rounded flex items-center gap-2">
-          <SearchIcon
-            sx={{ fontSize: 25 }}
-            className="cursor-pointer text-black/70"
-          />
-          <input type="text" placeholder="Search by product" className="text-sm  outline-none hidden lg:block"/>
-        </div>
+        <SearchIcon
+          sx={{ fontSize: 25 }}
+          className="cursor-pointer text-black/70"
+          onClick={() => setShowSearch(true)}
+        />
 
         <div className="group relative">
           <PersonOutlinedIcon

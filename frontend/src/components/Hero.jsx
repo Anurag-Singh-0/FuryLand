@@ -1,11 +1,19 @@
 import { images } from "../Images";
+import { motion } from "framer-motion";
 
 function Hero() {
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between">
+    <motion.div
+      className="flex flex-col md:flex-row items-center justify-between"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: -10 }}
+      transition={{ duration: 1, type: "tween" }}
+    >
       {/* Left Section */}
       <div className="w-full md:w-1/2 p-6">
-        <h1 className="text-3xl lg:text-5xl font-bold mb-4 michroma">Embrace Elegance. Live in Comfort</h1>
+        <h1 className="text-3xl lg:text-5xl font-bold mb-4 michroma">
+          Embrace Elegance. Live in Comfort
+        </h1>
         <p className="text-gray-600 mb-2">
           Discover our latest winter essentials — where timeless style meets
           cozy perfection. Crafted for those who love to stand out effortlessly,
@@ -24,7 +32,7 @@ function Hero() {
           className="w-full h-full object-cover object-center"
         />
       </div>
-    </div>
+    </motion.div>
   );
 }
 
