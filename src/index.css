@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap");
+
+@import "tailwindcss";
+
+* {
+  font-family: "Montserrat";
+}
+
+body::selection {
+  background-color:greenyellow;
+  color: black;
+}
+
+.Fjalla {
+  font-family: "Fjalla";
+}
+
+/* Extra Small (XS) - Phones (up to 575.98px) */
+@media (max-width: 575.98px) {
+  .logo {
+    width: 30vw;
+  }
+
+  a.active {
+    background-color: black;
+    color: #fff;
+  }
+}
+
+/* Small (SM) - Large phones and small tablets (576px - 767.98px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .logo {
+    width: 20vw;
+  }
+}
+
+/* Medium (MD) - Tablets (768px - 991.98px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .logo {
+    width: 16vw;
+  }
+}
+
+/* Large (LG) - Small laptops and desktops (992px - 1199.98px) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .logo {
+    width: 12vw;
+  }
+}
+
+/* Extra Large (XL) - Large desktops (1200px - 1399.98px) */
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  .logo {
+    width: 12vw;
+  }
+}
+
+/* 2X Extra Large (XXL) - Very large screens (1400px and up) */
+@media (min-width: 1400px) {
+  .logo {
+    width: 12vw;
+  }
+}
