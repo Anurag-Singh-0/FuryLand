@@ -10,6 +10,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 //Hook
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 //Framer Motion
 import { motion } from "framer-motion";
@@ -25,6 +26,12 @@ function Navbar() {
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];
+
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    navigate(`/collection`);
+  };
 
   return (
     <motion.div
@@ -69,7 +76,10 @@ function Navbar() {
         <SearchIcon
           sx={{ fontSize: 25 }}
           className="cursor-pointer text-black/70"
-          onClick={() => setShowSearch(true)}
+          onClick={() => {
+            setShowSearch(true);
+            handleSearch();
+          }}
         />
 
         <div className="group relative">

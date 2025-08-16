@@ -40,10 +40,7 @@ function SearchBox() {
               className="w-full outline-none px-3"
               onChange={(e) => setSearch(e.target.value)}
             />
-            <SearchIcon
-              className="text-gray-400"
-              onClick={() => setShowSearch()}
-            />
+            <SearchIcon className="text-gray-400" />
           </div>
 
           <div className="bg-black text-white rounded-full cursor-pointer">

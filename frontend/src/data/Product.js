@@ -168,19 +168,6 @@ export const Products = [
   },
 
   {
-    id: 13.1,
-    brand: "Ducati",
-    desc: "Brand Logo Printed Pure Cotton Casual Shirt",
-    price: 19,
-    image: [images.shirt2a, images.shirt2b, images.shirt2c],
-    category: "men",
-    subCategory: "topwear",
-    sizes: ["S", "M", "L"],
-    date: new Date().toLocaleDateString(),
-    bestseller: false,
-  },
-
-  {
     id: 14,
     brand: "Ducati",
     desc: "Brand Logo Printed Pure Cotton Casual Shirt",
@@ -256,5 +243,18 @@ export const Products = [
     sizes: ["M", "L", "XL"],
     date: new Date().toLocaleDateString(),
     bestseller: true,
+  },
+
+  {
+    id: 20,
+    brand: "Ducati",
+    desc: "Brand Logo Printed Pure Cotton Casual Shirt",
+    price: 19,
+    image: [images.shirt2a, images.shirt2b, images.shirt2c],
+    category: "men",
+    subCategory: "topwear",
+    sizes: ["S", "M", "L"],
+    date: new Date().toLocaleDateString(),
+    bestseller: false,
   },
 ];

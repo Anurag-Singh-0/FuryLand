@@ -6,7 +6,7 @@ import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 
 function Collection() {
-  const { Products } = useContext(ShopContext);
+  const { Products, search } = useContext(ShopContext);
 
   const [showMobileFilter, setShowMobileFilter] = useState(false);
   const [showMobileSort, setShowMobileSort] = useState(false);
@@ -47,14 +47,22 @@ function Collection() {
       );
     }
 
+    // 🔥 Search filter
+    if (search.trim() !== "") {
+      const lowerSearch = search.toLowerCase();
+      filtered = filtered.filter((item) =>
+        item.brand.toLowerCase().includes(lowerSearch)
+      );
+    }
+
     if (sortby === "low-high") {
       filtered.sort((a, b) => a.price - b.price);
     } else if (sortby === "high-low") {
-      filtered.sort((a, b) => b.price - b.price);
+      filtered.sort((a, b) => b.price - a.price);
     }
 
     return filtered;
-  }, [Products, selectCategory, selectType, sortby]);
+  }, [Products, selectCategory, selectType, sortby, search]);
 
   return (
     <div className="flex flex-col sm:flex-row gap-5 sm:gap-7 pt-10 border-black/10 border-t mb-30">
@@ -133,7 +141,7 @@ function Collection() {
           {getFilteredProducts.map((item, idx) => (
             <ProductItem
               id={item.id}
-              key={item.id} // Use item.id for stable keys
+              key={idx} // Use item.id for stable keys
               image={item.image}
               name={item.brand}
               price={item.price}
