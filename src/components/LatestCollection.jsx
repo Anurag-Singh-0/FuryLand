@@ -3,7 +3,7 @@ import { ShopContext } from "../context/ShopContext";
 import Title from "./Title";
 import ProductItem from "./ProductItem";
 
-function LetestCollection() {
+function LatestCollection() {
   const { Products } = useContext(ShopContext);
   const [letestProduct, setLetestProduct] = useState([]);
 
@@ -14,7 +14,7 @@ function LetestCollection() {
   return (
     <div className="mb-7">
       <div className="mt-10">
-        <Title text1={"Letest"} text2={"collections"} />
+        <Title text1={"Latest"} text2={"collections"} />
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
@@ -32,4 +32,4 @@ function LetestCollection() {
   );
 }
 
-export default LetestCollection;
+export default LatestCollection;
