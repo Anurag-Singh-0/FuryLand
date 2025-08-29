@@ -1,6 +1,7 @@
 import logoDark from "./assets/WebsiteAssets/logo-dark.png";
 import model from "./assets/ProductImages/Model.jpg";
 import aboutImage from "./assets/WebsiteAssets/about-image.jpg";
+import clothCover from "./assets/WebsiteAssets/cloth-cover.webp";
 
 // Shirts
 import shirt1a from "./assets/ProductImages/shirt1-a.webp";
@@ -74,6 +75,7 @@ import jacket1c from "./assets/ProductImages/jacket1c.jpg";
 export const images = {
   logoDark,
   aboutImage,
+  clothCover,
   model,
   shirt1a,
   shirt1b,
