@@ -1,6 +1,6 @@
 import Title from "../components/Title";
 import { images } from "../Images";
-import NewsletterBox from "../components/NewsletterBox";
+import NewsletterBox from "../components/NewsletterBox"
 
 function Contact() {
   return (
