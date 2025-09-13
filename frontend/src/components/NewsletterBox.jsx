@@ -11,7 +11,10 @@ function NewsletterBox() {
         asperiores?
       </p>
 
-      <form onSubmit={handleSubmit} className="w-full lg:w-1/2 flex items-center gap-3 mx-auto my-6 border pl-3">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full lg:w-1/2 flex items-center gap-3 mx-auto my-6 border pl-3"
+      >
         <input
           type="email"
           placeholder="Enter your email"

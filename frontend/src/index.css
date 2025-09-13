@@ -8,12 +8,17 @@
 }
 
 body::selection {
-  background-color:greenyellow;
+  background-color: greenyellow;
   color: black;
 }
 
 .Fjalla {
   font-family: "Fjalla";
+}
+
+.cart-button {
+  background-color: black !important;
+  margin-bottom: 2rem !important;
 }
 
 /* Extra Small (XS) - Phones (up to 575.98px) */
@@ -26,12 +31,27 @@ body::selection {
     background-color: black;
     color: #fff;
   }
+
+  .product-thumbnail {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .custom-thumbnail {
+    display: flex;
+    justify-content: space-evenly;
+  }
 }
 
 /* Small (SM) - Large phones and small tablets (576px - 767.98px) */
 @media (min-width: 576px) and (max-width: 767.98px) {
   .logo {
     width: 20vw;
+  }
+
+  .product-thumbnail {
+    display: flex;
+    flex-direction: column-reverse;
   }
 }
 
@@ -40,12 +60,20 @@ body::selection {
   .logo {
     width: 16vw;
   }
+
+  .product-thumbnail {
+    display: flex;
+  }
 }
 
 /* Large (LG) - Small laptops and desktops (992px - 1199.98px) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .logo {
     width: 12vw;
+  }
+
+  .product-thumbnail {
+    display: flex;
   }
 }
 
@@ -54,11 +82,19 @@ body::selection {
   .logo {
     width: 12vw;
   }
+
+  .product-thumbnail {
+    display: flex;
+  }
 }
 
 /* 2X Extra Large (XXL) - Very large screens (1400px and up) */
 @media (min-width: 1400px) {
   .logo {
     width: 12vw;
+  }
+
+  .product-thumbnail {
+    display: flex;
   }
 }
