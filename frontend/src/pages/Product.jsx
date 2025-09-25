@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import Review from "../components/Review";
 import Button from "@mui/material/Button";
+import Title from "../components/Title";
 
 function Product() {
   const { productId } = useParams();
@@ -92,8 +93,45 @@ function Product() {
           </Button>
           <hr className="text-gray-300" />
           {/* Short INFO */}
-          <div></div>
+          <div className="text-gray-600 text-sm mt-5 flex flex-col gap-2">
+            <p>100% Original product.</p>
+            <p>Cash on delivery is available on this product.</p>
+            <p>Easy return and exchange policy within 7 days.</p>
+          </div>
         </div>
+      </div>
+      {/* Description Section */}
+      <div className="flex flex-col gap-1 mt-18 mb-20">
+        <div>
+          <button className="outline rounded-sm outline-black/40 py-2 px-4 font-semibold">Description</button>
+          {/* <button className="outline rounded-sm outline-black/40 py-2 px-4">Reviews (200)</button> */}
+        </div>
+
+        <div className="p-5 flex flex-col gap-5 outline rounded-sm outline-black/20 text-gray-600">
+          <p>
+            FuryLand is a modern online shopping destination built to bring
+            style, convenience, and variety to your fingertips. It’s a digital
+            marketplace where shoppers can explore unique collections, discover
+            the latest trends, and purchase products without leaving the comfort
+            of home. Designed for today’s fast-paced lifestyle, FuryLand makes
+            online shopping seamless, secure, and enjoyable.
+          </p>
+          <p>
+            From fashion essentials and accessories to lifestyle products,
+            FuryLand offers a wide range of items complete with clear images,
+            accurate pricing, and multiple size and color options. Each product
+            page is crafted to provide all the details you need to make
+            confident choices, ensuring a smooth and satisfying shopping
+            experience every time.
+          </p>
+        </div>
+      </div>
+
+      {/* Related Product */}
+      <div>
+        <Title text1={"Related"} text2={"Product"}/>
+
+        
       </div>
     </div>
   ) : (
