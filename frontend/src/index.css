@@ -64,6 +64,10 @@ body::selection {
   .product-thumbnail {
     display: flex;
   }
+
+  .product-thumbnail {
+    height: fit-content;
+  }
 }
 
 /* Large (LG) - Small laptops and desktops (992px - 1199.98px) */

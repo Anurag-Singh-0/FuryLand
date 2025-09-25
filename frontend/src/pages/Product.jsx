@@ -33,7 +33,7 @@ function Product() {
     <div className="border-t-2 border-t-black/20 pt-10 transition-opacity ease-in duration-500 opacity-100">
       <div className="flex flex-col sm:flex-row gap-5">
         {/* Left side image section */}
-        <div className="w-full sm:w-1/2 product-thumbnail gap-2">
+        <div className="w-full sm:w-1/2 product-thumbnail gap-2 ">
           {/* Thumbnails*/}
           <div className="flex sm:flex-col flex-row sm:w-1/5 w-full sm:gap-2 gap-3 mt-3 sm:mt-0 custom-thumbnail">
             {productData.image.map((item, index) => (
