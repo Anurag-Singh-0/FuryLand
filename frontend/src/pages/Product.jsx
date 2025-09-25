@@ -4,6 +4,7 @@ import { ShopContext } from "../context/ShopContext";
 import Review from "../components/Review";
 import Button from "@mui/material/Button";
 import Title from "../components/Title";
+import RelatedProducts from "../components/RelatedProducts";
 
 function Product() {
   const { productId } = useParams();
@@ -103,7 +104,9 @@ function Product() {
       {/* Description Section */}
       <div className="flex flex-col gap-1 mt-18 mb-20">
         <div>
-          <button className="outline rounded-sm outline-black/40 py-2 px-4 font-semibold">Description</button>
+          <button className="outline rounded-sm outline-black/40 py-2 px-4 font-semibold">
+            Description
+          </button>
           {/* <button className="outline rounded-sm outline-black/40 py-2 px-4">Reviews (200)</button> */}
         </div>
 
@@ -129,9 +132,12 @@ function Product() {
 
       {/* Related Product */}
       <div>
-        <Title text1={"Related"} text2={"Product"}/>
-
-        
+        <Title text1={"Related"} text2={"Product"} />
+        <RelatedProducts
+          category={productData.category}
+          subCategory={productData.subCategory}
+          currentProductId={productData.id}
+        />
       </div>
     </div>
   ) : (
