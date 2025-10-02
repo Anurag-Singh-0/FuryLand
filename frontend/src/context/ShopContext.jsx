@@ -17,7 +17,7 @@ const ShopContextProvider = (props) => {
       if (newCartData[itemId][size]) {
         newCartData[itemId][size] += 1;
       }else{
-        
+        newCartData[itemId][size] = 1
       }
     }
   };
