@@ -18,7 +18,7 @@ import { ShopContext } from "../context/ShopContext";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
-  const { setShowSearch } = useContext(ShopContext);
+  const { setShowSearch, getCartCount } = useContext(ShopContext);
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -106,7 +106,7 @@ function Navbar() {
         <Link to="/cart" className="relative">
           <LocalMallOutlinedIcon className="text-black/70" />
           <p className="aspect-square text-[8px] bg-black text-white rounded-full text-center w-4 leading-4 absolute right-[-5px] bottom-[-5px]">
-            10
+            {getCartCount()}
           </p>
         </Link>
 
