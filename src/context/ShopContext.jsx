@@ -11,11 +11,15 @@ const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
 
   const addToCart = async (itemId, size) => {
-    const newCartData =
-      structuredClone(
-        cartItems
-      ); 
-      /* structuredClone() is used in React primarily for creating deep copies of objects and arrays, especially when dealing with complex or deeply nested state updates. */
+    const newCartData = structuredClone(cartItems);
+    /* structuredClone() is used in React primarily for creating deep copies of objects and arrays, especially when dealing with complex or deeply nested state updates. */
+    if (newCartData[itemId]) {
+      if (newCartData[itemId][size]) {
+        newCartData[itemId][size] += 1;
+      }else{
+        newCartData[itemId][size] = 1
+      }
+    }
   };
 
   const value = {
