@@ -10,6 +10,7 @@ function ProductItem({ id, image, name, price }) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [pathname]);
 
+  //Product Item card
   return (
     <div className="p-2">
       <Link
