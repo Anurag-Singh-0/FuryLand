@@ -34,16 +34,31 @@ const ShopContextProvider = (props) => {
   };
 
   const getCartCount = () => {
+    // If cartItems is missing or empty, quickly return 0 (no items).
+    if (!cartItems || Object.keys(cartItems).length === 0) return 0;
+
+    // Running total of quantities
     let totalCount = 0;
-    for (const items in cartItems) {
-      for (const item in cartItems[items]) {
-        try {
-          if (cartItems[items][item] > 0) {
-            totalCount += cartItems[items][item];
-          }
-        } catch (error) {}
+
+    // Loop through each productId in the cart (productId keys).
+    for (const productId in cartItems) {
+      // sizesObj is the inner object that maps sizes to quantities for this product.
+      // e.g. { "M": 2, "L": 1 }
+      const sizesObj = cartItems[productId];
+
+      // Loop through each size key inside this product's sizes object.
+      for (const sizeKey in sizesObj) {
+        // Convert stored value to a number safely.
+        // Number("2") => 2, Number(undefined) or Number("abc") => NaN
+        // The `|| 0` turns NaN (or any falsy value like undefined) into 0.
+        const qty = Number(sizesObj[sizeKey]) || 0;
+
+        // Add this size's quantity to the running total.
+        totalCount += qty;
       }
     }
+
+    // Return the total sum across all products and sizes.
     return totalCount;
   };
 
