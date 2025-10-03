@@ -17,20 +17,20 @@ const ShopContextProvider = (props) => {
       return;
     }
 
-    const CartData = structuredClone(cartItems);
-    /* structuredClone() is used in React primarily for creating deep copies of objects and arrays, especially when dealing with complex or deeply nested state updates. */
+    setCartItems((prevCart) => {
+      // Copy old cart
+      const newCart = { ...prevCart };
 
-    if (CartData[itemId]) {
-      if (CartData[itemId][size]) {
-        CartData[itemId][size] += 1;
+      // If product already in cart
+      if (newCart[itemId]) {
+        // If that size exists, increase qty
+        newCart[itemId][size] = (newCart[itemId][size] || 0) + 1;
       } else {
-        CartData[itemId][size] = 1;
+        // If product not in cart, add it
+        newCart[itemId] = { [size]: 1 };
       }
-    } else {
-      CartData[itemId] = { [size]: 1 };
-    }
-
-    setCartItems(CartData);
+      return newCart;
+    });
   };
 
   const getCartCount = () => {
