@@ -81,7 +81,7 @@ const ShopContextProvider = (props) => {
 
   const updateProductQuantity = (productId, size) => {
     setCartItems((prev) => {
-      const updatedItem = { ...prev };
+      const updatedIte = { ...prev };
 
 
     });
