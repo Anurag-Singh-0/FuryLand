@@ -6,7 +6,7 @@ export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
   const currency = "$";
-  const delivaryFee = 20;
+  const delivaryFee = 10;
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [cartItems, setCartItems] = useState({});
@@ -62,6 +62,31 @@ const ShopContextProvider = (props) => {
     return totalCount;
   };
 
+  const removeFromCart = (productId, size) => {
+    setCartItems((prevItem) => {
+      const updatedCart = { ...prevItem };
+
+      // if product exists and that size exists
+      if (updatedCart[productId] && updatedCart[productId][size]) {
+        delete updatedCart[productId][size]; // remove that size only, [The delete keyword removes a key from an object.]
+
+        if (Object.keys(updatedCart[productId]).length === 0) {
+          delete updatedCart[productId];
+        }
+      }
+
+      return updatedCart;
+    });
+  };
+
+  const updateProductQuantity = (productId, size) => {
+    setCartItems((prev) => {
+      const updatedItem = { ...prev };
+
+
+    });
+  };
+
   const value = {
     Products,
     currency,
@@ -73,6 +98,7 @@ const ShopContextProvider = (props) => {
     cartItems,
     addToCart,
     getCartCount,
+    removeFromCart,
   };
 
   return (

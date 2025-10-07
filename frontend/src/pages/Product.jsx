@@ -75,17 +75,17 @@ function Product() {
             <p className="font-medium">Select Size</p>
             <div className="flex gap-2">
               {productData.sizes.map((item, idx) => (
-                <button
+                <Button
                   onClick={() => setSize(item)}
-                  className={`py-2 px-4 rounded-sm cursor-pointer ${
+                  className={`!text-black py-2 px-4 rounded-sm cursor-pointer ${
                     item === size
-                      ? "bg-black text-white"
-                      : "border border-black/20"
+                      ? "!bg-black !text-white"
+                      : "!border !border-black/20"
                   }`}
                   key={idx}
                 >
                   {item}
-                </button>
+                </Button>
               ))}
             </div>
           </div>

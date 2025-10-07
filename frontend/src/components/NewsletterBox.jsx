@@ -21,12 +21,12 @@ function NewsletterBox() {
           className="outline-none p-2 w-full sm:flex-1"
           required
         />
-        <button
+        <b  utton
           className=" bg-black text-white text-xs px-10 py-4 cursor-pointer"
           type="submit"
         >
           SUBSCRIBE
-        </button>
+        </b>
       </form>
     </div>
   );
