@@ -2,11 +2,20 @@ import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
+import RemoveIcon from "@mui/icons-material/Remove";
+import AddIcon from "@mui/icons-material/Add";
 import { images } from "../Images";
 
 function Cart() {
-  const { delivaryFee, currency, Products, cartItems, removeFromCart } =
-    useContext(ShopContext);
+  const {
+    delivaryFee,
+    currency,
+    Products,
+    cartItems,
+    removeFromCart,
+    increaseQuantity,
+    decreaseQuantity,
+  } = useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
 
   // Convert cartItems object → usable array
@@ -120,12 +129,18 @@ function Cart() {
                   {/* Quantity + Remove */}
                   <div className="flex items-center gap-3 mt-3 sm:mt-0">
                     <div className=" flex justify-between items-center gap-4">
-                      <button className="cursor-pointer border border-gray-600 text-black px-2 rounded-sm">
-                        -
+                      <button
+                        onClick={() => decreaseQuantity(item.id, item.size)}
+                        className="cursor-pointer border border-gray-600 text-black px-2 rounded-sm"
+                      >
+                        <RemoveIcon />
                       </button>
                       <span>{item.quantity}</span>
-                      <button className="cursor-pointer border border-gray-600 text-black px- px-2 rounded-sm">
-                        +
+                      <button
+                        onClick={() => increaseQuantity(item.id, item.size)}
+                        className="cursor-pointer border border-gray-600 text-black px- px-2 rounded-sm"
+                      >
+                        <AddIcon />
                       </button>
                     </div>
                     <button

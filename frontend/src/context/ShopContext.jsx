@@ -79,11 +79,48 @@ const ShopContextProvider = (props) => {
     });
   };
 
-  const updateProductQuantity = (productId, size) => {
-    setCartItems((prev) => {
-      const updatedIte = { ...prev };
+  // Increase quantity
+  const increaseQuantity = (productId, size) => {
+    setCartItems((prevCart) => {
+      if ((prevCart[productId][size] || 0) >= 10) {
+        toast.error("Oops! You’ve reached the maximum limit for this item.");
+        return prevCart;
+      }
 
+      return {
+        ...prevCart,
+        [productId]: {
+          ...prevCart[productId],
+          [size]: (prevCart[productId][size] || 0) + 1,
+        },
+      };
+    });
+  };
 
+  // Decrease Quantity
+  const decreaseQuantity = (productId, size) => {
+    setCartItems((prevCart) => {
+      const currQuantity = prevCart[productId][size];
+      if (currQuantity > 1) {
+        return {
+          ...prevCart,
+          [productId]: {
+            ...prevCart[productId],
+            [size]: currQuantity - 1,
+          },
+        };
+      } else {
+        const newCart = { ...prevCart };
+        const updatedSizes = { ...newCart[productId] };
+        delete updatedSizes[size];
+
+        if (Object.keys(updatedSizes).length === 0) {
+          delete newCart[productId];
+        } else {
+          newCart[productId] = updatedSizes;
+        }
+        return newCart;
+      }
     });
   };
 
@@ -99,6 +136,8 @@ const ShopContextProvider = (props) => {
     addToCart,
     getCartCount,
     removeFromCart,
+    increaseQuantity,
+    decreaseQuantity,
   };
 
   return (
