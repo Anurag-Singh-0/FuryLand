@@ -83,7 +83,9 @@ const ShopContextProvider = (props) => {
   const increaseQuantity = (productId, size) => {
     setCartItems((prevCart) => {
       if ((prevCart[productId][size] || 0) >= 10) {
-        toast.error("Oops! You’ve reached the maximum limit for this item.");
+        toast.error(
+          "Easy Tiger! That’s all we’ve got for now, Limit reached."
+        );
         return prevCart;
       }
 
