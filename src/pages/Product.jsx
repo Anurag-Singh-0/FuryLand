@@ -8,7 +8,8 @@ import RelatedProducts from "../components/RelatedProducts";
 
 function Product() {
   const { productId } = useParams();
-  const { Products, currency, delivaryFee } = useContext(ShopContext);
+  const { Products, currency, delivaryFee, addToCart } =
+    useContext(ShopContext);
   const [productData, setProductData] = useState(null);
   const [images, setImages] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -74,25 +75,31 @@ function Product() {
             <p className="font-medium">Select Size</p>
             <div className="flex gap-2">
               {productData.sizes.map((item, idx) => (
-                <button
+                <Button
                   onClick={() => setSize(item)}
-                  className={`py-2 px-4 rounded-sm cursor-pointer ${
+                  className={`!text-black py-2 px-4 rounded-sm cursor-pointer ${
                     item === size
-                      ? "bg-black text-white"
-                      : "border border-black/20"
+                      ? "!bg-black !text-white"
+                      : "!border !border-black/20"
                   }`}
                   key={idx}
                 >
                   {item}
-                </button>
+                </Button>
               ))}
             </div>
           </div>
+
           {/* ADD TO CART Button */}
-          <Button variant="contained" className="cart-button cursor-pointer">
+          <Button
+            onClick={() => addToCart(productData.id, size)}
+            variant="contained"
+            className="cart-button cursor-pointer"
+          >
             Add to cart
           </Button>
           <hr className="text-gray-300" />
+
           {/* Short INFO */}
           <div className="text-gray-600 text-sm mt-5 flex flex-col gap-2">
             <p>100% Original product.</p>

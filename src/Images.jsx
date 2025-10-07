@@ -72,7 +72,10 @@ import jacket1a from "./assets/ProductImages/jacket1a.jpg";
 import jacket1b from "./assets/ProductImages/jacket1b.jpg";
 import jacket1c from "./assets/ProductImages/jacket1c.jpg";
 
+import emptyCartPng from "./assets/WebsiteAssets/emptyCart.png";
+
 export const images = {
+  emptyCartPng,
   logoDark,
   aboutImage,
   clothCover,

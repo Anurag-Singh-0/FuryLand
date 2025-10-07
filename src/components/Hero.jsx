@@ -1,5 +1,6 @@
 import { images } from "../Images";
 import { motion } from "framer-motion";
+import Button from "@mui/material/Button";
 
 function Hero() {
   return (
@@ -19,9 +20,9 @@ function Hero() {
           cozy perfection. Crafted for those who love to stand out effortlessly,
           even in the coldest moments.
         </p>
-        <button className="mt-4 px-4 py-2 bg-black text-white rounded cursor-pointer">
+        <Button className="mt-4 !bg-black !text-white rounded cursor-pointer">
           Shop Now
-        </button>
+        </Button>
       </div>
 
       {/* Right Section */}

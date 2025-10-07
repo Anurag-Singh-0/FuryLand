@@ -1,6 +1,7 @@
 import Title from "../components/Title";
 import { images } from "../Images";
 import NewsletterBox from "../components/NewsletterBox"
+import Button from "@mui/material/Button";
 
 function Contact() {
   return (
@@ -41,9 +42,9 @@ function Contact() {
                 Careers at FuryLand
               </h1>
               <p>Learn more about our teams and job openings.</p>
-              <button className="px-4 py-2 outline rounded cursor-pointer hover:bg-black hover:text-white transition-all duration-200">
+              <Button className="px-4 py-2 !border !border-black rounded cursor-pointer !text-black hover:!bg-black hover:!text-white transition-all duration-200">
                 Explore Jobs
-              </button>
+              </Button>
             </div>
           </div>
         </div>
