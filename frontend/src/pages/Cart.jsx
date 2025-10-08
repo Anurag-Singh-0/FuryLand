@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { images } from "../Images";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
   const {
@@ -15,6 +16,7 @@ function Cart() {
     removeFromCart,
     increaseQuantity,
     decreaseQuantity,
+    navigate,
   } = useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
 
@@ -65,6 +67,7 @@ function Cart() {
           ) : (
             <div className="mb-3 flex justify-end">
               <Button
+                onClick={() => navigate("/place-order")}
                 variant="contained"
                 className="!bg-black !text-white !px-6 !py-2 uppercase !text-sm"
               >

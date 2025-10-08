@@ -140,7 +140,7 @@ const ShopContextProvider = (props) => {
     removeFromCart,
     increaseQuantity,
     decreaseQuantity,
-    navigate
+    navigate,
   };
 
   return (
