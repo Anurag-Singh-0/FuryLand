@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Products } from "../data/Product.js";
 import { toast } from "react-toastify";
 
@@ -10,6 +11,7 @@ const ShopContextProvider = (props) => {
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [cartItems, setCartItems] = useState({});
+  const navigate = useNavigate();
 
   const addToCart = async (itemId, size) => {
     if (!size) {
@@ -83,9 +85,7 @@ const ShopContextProvider = (props) => {
   const increaseQuantity = (productId, size) => {
     setCartItems((prevCart) => {
       if ((prevCart[productId][size] || 0) >= 10) {
-        toast.error(
-          "Easy Tiger! That’s all we’ve got for now, Limit reached."
-        );
+        toast.error("Easy Tiger! That’s all we’ve got for now, Limit reached.");
         return prevCart;
       }
 
@@ -140,6 +140,7 @@ const ShopContextProvider = (props) => {
     removeFromCart,
     increaseQuantity,
     decreaseQuantity,
+    navigate
   };
 
   return (
