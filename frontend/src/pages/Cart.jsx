@@ -5,7 +5,6 @@ import Button from "@mui/material/Button";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { images } from "../Images";
-import { useNavigate } from "react-router-dom";
 
 function Cart() {
   const {
@@ -71,7 +70,7 @@ function Cart() {
                 variant="contained"
                 className="!bg-black !text-white !px-6 !py-2 uppercase !text-sm"
               >
-                Place Order
+                Process to checkout
               </Button>
             </div>
           )}
