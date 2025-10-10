@@ -6,6 +6,10 @@ function PlaceOrder() {
   const { navigate, cartItems } = useContext(ShopContext);
   const [method, setMethod] = useState("cod");
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="pb-10">
       <hr className="text-gray-300 mb-10" />
@@ -17,18 +21,20 @@ function PlaceOrder() {
             Delivery <span className="text-gray-900">Information</span>
           </h1>
 
-          <form className="flex flex-col gap-4">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             {/* Row 1 */}
             <div className="flex flex-col sm:flex-row gap-4">
               <input
                 className="focus:border-black border border-gray-400 px-4 py-3 rounded-md w-full outline-none"
                 type="text"
                 placeholder="First name"
+                required
               />
               <input
                 className="focus:border-black border border-gray-400 px-4 py-3 rounded-md w-full outline-none"
                 type="text"
                 placeholder="Last name"
+                required
               />
             </div>
 
@@ -36,6 +42,7 @@ function PlaceOrder() {
               className="focus:border-black border border-gray-400 px-4 py-3 rounded-md w-full outline-none"
               type="email"
               placeholder="Email address"
+              required
             />
 
             <input
@@ -50,11 +57,13 @@ function PlaceOrder() {
                 className="focus:border-black border border-gray-400 px-4 py-3 rounded-md w-full outline-none"
                 type="text"
                 placeholder="City"
+                required
               />
               <input
                 className="focus:border-black border border-gray-400 px-4 py-3 rounded-md w-full outline-none"
                 type="text"
                 placeholder="State"
+                required
               />
             </div>
 
@@ -64,11 +73,13 @@ function PlaceOrder() {
                 className="focus:border-black border border-gray-400 px-4 py-3 rounded-md w-full outline-none"
                 type="number"
                 placeholder="Zipcode"
+                required
               />
               <input
                 className="focus:border-black border border-gray-400 px-4 py-3 rounded-md w-full outline-none"
                 type="text"
                 placeholder="Country"
+                required
               />
             </div>
 
@@ -76,6 +87,7 @@ function PlaceOrder() {
               className="focus:border-black border border-gray-400 px-4 py-3 rounded-md w-full outline-none"
               type="Number"
               placeholder="Phone"
+              required
             />
           </form>
         </div>
