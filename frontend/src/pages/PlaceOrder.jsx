@@ -9,6 +9,8 @@ function PlaceOrder() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("Form submitted!");
+    navigate("/orders");
   };
 
   return (
@@ -22,7 +24,11 @@ function PlaceOrder() {
             Delivery <span className="text-gray-900">Information</span>
           </h1>
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <form
+            onSubmit={handleSubmit}
+            id="orderForm"
+            className="flex flex-col gap-4"
+          >
             {/* Row 1 */}
             <div className="flex flex-col sm:flex-row gap-4">
               <input
@@ -95,7 +101,7 @@ function PlaceOrder() {
 
         {/* RIGHT: Cart Summary */}
         <div className="flex-1 md:max-w-xl">
-          <CartTotal/>
+          <CartTotal />
           {/* Payment Methods */}
           <h2 className="mt-8 text-lg font-semibold text-gray-600">
             Payment <span className="text-gray-900">Method</span>
@@ -141,7 +147,8 @@ function PlaceOrder() {
 
           {/* Place Order Button */}
           <Button
-            onClick={() => navigate("/orders")}
+            form="orderForm"
+            type="submit"
             variant="contained"
             className="!mt-8 w-full !bg-black !text-white !py-3 rounded-lg text-lg font-semibold"
           >
