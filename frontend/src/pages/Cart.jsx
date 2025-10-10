@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { images } from "../Images";
+import CartTotal from "../components/CartTotal";
 
 function Cart() {
   const {
@@ -17,6 +18,7 @@ function Cart() {
     decreaseQuantity,
     navigate,
   } = useContext(ShopContext);
+
   const [cartData, setCartData] = useState([]);
 
   // Convert cartItems object → usable array
@@ -41,13 +43,6 @@ function Cart() {
     }
     setCartData(tempData);
   }, [cartItems, Products]);
-
-  // Calculate totals
-  const subtotal = cartData.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
-  const total = subtotal + delivaryFee;
 
   return (
     <div className="w-full px-4 md:px-2 pb-8">
@@ -163,35 +158,7 @@ function Cart() {
           " "
         ) : (
           <div className="lg:w-1/3 w-full">
-            <div className="border border-gray-300 rounded-lg p-6 shadow-sm sticky top-5">
-              <h3 className="text-xl font-semibold mb-4 border-b pb-2">
-                CART <span className="text-blue-700">TOTALS</span>
-              </h3>
-
-              <div className="flex justify-between py-3 border-b">
-                <span>Subtotal</span>
-                <span className="font-medium">
-                  {currency}
-                  {subtotal.toFixed(2)}
-                </span>
-              </div>
-
-              <div className="flex justify-between py-3 border-b">
-                <span>Shipping Fee</span>
-                <span className="font-medium">
-                  {currency}
-                  {delivaryFee.toFixed(2)}
-                </span>
-              </div>
-
-              <div className="flex justify-between py-3 font-semibold text-lg">
-                <span>Total</span>
-                <span>
-                  {currency}
-                  {total.toFixed(2)}
-                </span>
-              </div>
-            </div>
+            <CartTotal />
           </div>
         )}
       </div>
