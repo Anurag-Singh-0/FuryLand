@@ -5,6 +5,7 @@ import Review from "../components/Review";
 import Button from "@mui/material/Button";
 import Title from "../components/Title";
 import RelatedProducts from "../components/RelatedProducts";
+import { toast } from "react-toastify";
 
 function Product() {
   const { productId } = useParams();
@@ -92,12 +93,16 @@ function Product() {
 
           {/* ADD TO CART Button */}
           <Button
-            onClick={() => addToCart(productData.id, size)}
+            onClick={() => {
+              addToCart(productData.id, size);
+              toast.success("Your item has been added to the cart!")
+            }}
             variant="contained"
             className="cart-button cursor-pointer"
           >
             Add to cart
           </Button>
+
           <hr className="text-gray-300" />
 
           {/* Short INFO */}

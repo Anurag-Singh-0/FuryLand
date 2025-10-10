@@ -1,8 +1,11 @@
 import { images } from "../Images";
 import { motion } from "framer-motion";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
 
 function Hero() {
+  const navigate = useNavigate();
+
   return (
     <motion.div
       className="flex flex-col md:flex-row items-center justify-between"
@@ -20,7 +23,7 @@ function Hero() {
           cozy perfection. Crafted for those who love to stand out effortlessly,
           even in the coldest moments.
         </p>
-        <Button className="mt-4 !bg-black !text-white rounded cursor-pointer">
+        <Button onClick={() => navigate("/collection")} className="mt-4 !bg-black !text-white rounded cursor-pointer">
           Shop Now
         </Button>
       </div>
