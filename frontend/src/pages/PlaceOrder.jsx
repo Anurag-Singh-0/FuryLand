@@ -2,6 +2,7 @@ import Button from "@mui/material/Button";
 import { useContext, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import CartTotal from "../components/CartTotal";
+import { toast } from "react-toastify";
 
 function PlaceOrder() {
   const { navigate, cartItems } = useContext(ShopContext);
@@ -10,6 +11,7 @@ function PlaceOrder() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted!");
+    toast.success("Order Placed")
     navigate("/orders");
   };
 

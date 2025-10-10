@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
-  const currency = "$";
+  const currency = "₹"; // ₹,  $
   const delivaryFee = 10;
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
