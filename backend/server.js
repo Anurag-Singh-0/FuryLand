@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/mongodb.js";
 import connectCloudinary from "./config/cloudinary.js";
+import userRoute from "./routes/userRoutes.js";
 
 // App config
 dotenv.config();
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(cors());
 
 // API endpoints
+app.use("/api/user", userRoute);
 
 app.get("/api/", (req, res) => {
   res.send("API endpoint is working good!");
