@@ -9,8 +9,9 @@ import { toast } from "react-toastify";
 
 function Product() {
   const { productId } = useParams();
-  const { Products, currency, delivaryFee, addToCart } =
+  const { Products, currency, addToCart } =
     useContext(ShopContext);
+
   const [productData, setProductData] = useState(null);
   const [images, setImages] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -51,6 +52,7 @@ function Product() {
               />
             ))}
           </div>
+
           {/* Main Image */}
           <div className="flex-1 flex rounded-md">
             <img
@@ -59,6 +61,7 @@ function Product() {
               className="w-full max-h-[500px] object-contain"
             />
           </div>
+
         </div>
 
         {/* Right side Product info section */}
@@ -66,12 +69,12 @@ function Product() {
           <h1 className="font-semibold text-2xl">{productData.brand}</h1>
           <Review value={3} ratingNum={155} />
           <div className="text-2xl font-semibold flex gap-1 mt-5 mb-5">
-            <h1 className="">{currency}</h1>
-            <h1 className="">{delivaryFee}</h1>
+            <h1>{currency}</h1>
+            <h1>{productData.price}</h1>
           </div>
           {/* Product Desc */}
           <p className="font-medium text-gray-600">{productData.desc}</p>
-          {/* Product Sizes */}
+          {/* Product Sizes */} 
           <div className="flex flex-col gap-4 my-8">
             <p className="font-medium">Select Size</p>
             <div className="flex gap-2">
