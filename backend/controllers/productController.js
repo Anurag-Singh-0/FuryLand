@@ -70,7 +70,10 @@ const listProducts = async (req, res) => {
 
 // Remove Product
 const removeProduct = async (req, res) => {
-  
+  try {
+    await productModel.findByIdAndDelete(req.body.id);
+    res.json({ success: true, message: "Product removed" });
+  } catch (error) {}
 };
 
 // Function for single product information
