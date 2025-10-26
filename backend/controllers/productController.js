@@ -69,7 +69,9 @@ const listProducts = async (req, res) => {
 };
 
 // Remove Product
-const removeProduct = async (req, res) => {};
+const removeProduct = async (req, res) => {
+  
+};
 
 // Function for single product information
 const singleProduct = async (req, res) => {};
