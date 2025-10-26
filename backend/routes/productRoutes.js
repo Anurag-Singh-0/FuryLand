@@ -1,4 +1,5 @@
 import express from "express";
+import adminAuth from "../middleware/adminAuth.js";
 
 import {
   addProduct,
@@ -13,6 +14,7 @@ const productRoute = express.Router();
 
 productRoute.post(
   "/add",
+  adminAuth,
   upload.fields([
     { name: "image1", maxCount: 1 },
     { name: "image2", maxCount: 1 },
@@ -21,7 +23,7 @@ productRoute.post(
   ]),
   addProduct
 );
-productRoute.post("/remove", removeProduct);
+productRoute.post("/remove",adminAuth, removeProduct);
 productRoute.post("/single", singleProduct);
 productRoute.get("/list", listProducts);
 
