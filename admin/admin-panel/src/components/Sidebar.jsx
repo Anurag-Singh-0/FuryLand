@@ -15,7 +15,7 @@ const navItems = [
 
 function Sidebar() {
   return (
-    <aside className="bg-white w-[15%] min-h-screen border-r border-gray-200 py-6 px-4 hidden ">
+    <aside className="bg-white w-[15%] min-h-screen border-r border-gray-200 py-6 px-4 sm:block hidden">
       <h2 className="text-gray-500 text-sm mb-2 px-2">
         Menu
       </h2>
