@@ -22,7 +22,7 @@ function Navbar() {
   ];
 
   return (
-    <div className="flex min-h-screen">
+    <>
       {/* Mobile Header */}
       <div className="flex items-center justify-between px-6 py-4 bg-white shadow-md md:hidden w-full fixed top-0 left-0 z-50">
         <img
@@ -38,7 +38,7 @@ function Navbar() {
 
       {/* Sidebar */}
       <aside
-        className={`fixed md:static top-0 left-0 h-full bg-white flex flex-col transition-transform duration-300 z-50 
+        className={`fixed md:static top-0 left-0 h-screen bg-white shadow-lg flex flex-col transition-transform duration-300 z-50 
         ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
         w-64`}
       >
@@ -108,17 +108,7 @@ function Navbar() {
           </Button>
         </div>
       </aside>
-
-      {/* Main Content Area */}
-      <main className="flex-1 bg-gray-50 p-6 md:ml-0 mt-16 md:mt-0">
-        <div className="text-gray-800 text-lg font-semibold">
-          Welcome to Admin Dashboard
-        </div>
-        <p className="text-gray-500 mt-2">
-          Select a menu item from the sidebar to get started.
-        </p>
-      </main>
-    </div>
+    </>
   );
 }
 
