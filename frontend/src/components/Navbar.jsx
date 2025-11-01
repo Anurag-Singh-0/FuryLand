@@ -72,7 +72,7 @@ function Navbar() {
       </ul>
 
       {/* Action Buttons */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4"> 
         <SearchIcon
           sx={{ fontSize: 25 }}
           className="cursor-pointer text-black/70"
