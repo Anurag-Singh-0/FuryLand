@@ -9,7 +9,7 @@ import {
   Assignment as OrdersIcon,
   Category as ProductsIcon,
   Inventory2 as InventoryIcon,
-} from "@mui/icons-material";
+} from "@mui/icons-material"; 
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
