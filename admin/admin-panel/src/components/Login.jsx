@@ -19,7 +19,8 @@ export default function Login() {
             variant="outlined"
             required
           />
-          <Button variant="contained">Login</Button>
+
+          <Button variant="contained" type="submit">Login</Button>
         </form>
       </div>
     </div>
