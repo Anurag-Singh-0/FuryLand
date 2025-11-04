@@ -2,7 +2,6 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 export default function Login() {
-    
   const handleSubmit = (e) => {
     try {
       e.preventDefault();
@@ -14,7 +13,7 @@ export default function Login() {
   return (
     <div>
       <div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <TextField
             id="outlined-basic"
             label="Email"
