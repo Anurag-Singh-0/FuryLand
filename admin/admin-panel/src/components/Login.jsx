@@ -19,6 +19,7 @@ export default function Login() {
             label="Email"
             variant="outlined"
             required
+            type="text"
           />
 
           <TextField
@@ -26,6 +27,7 @@ export default function Login() {
             label="Password"
             variant="outlined"
             required
+            type="password"
           />
 
           <Button variant="contained" type="submit">
