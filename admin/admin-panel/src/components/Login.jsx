@@ -2,6 +2,15 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 export default function Login() {
+    
+  const handleSubmit = (e) => {
+    try {
+      e.preventDefault();
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div>
       <div>
@@ -20,7 +29,9 @@ export default function Login() {
             required
           />
 
-          <Button variant="contained" type="submit">Login</Button>
+          <Button variant="contained" type="submit">
+            Login
+          </Button>
         </form>
       </div>
     </div>
