@@ -6,13 +6,15 @@ import Button from "@mui/material/Button";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
   return (
-    <div className="flex justify-center items-center border-t border-gray-300 py-20 w-full">
+    <div className="flex justify-center items-center border-t border-gray-300 py-20 w-full bg-gray-200">
       <div className="relative bg-transparent border border-gray-400 rounded-xl w-full max-w-sm p-8 text-black">
         {/* Profile Icon */}
         <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-200 rounded-full p-4 border border-gray-500">
@@ -28,6 +30,7 @@ function Login() {
             type="email"
             placeholder="Email"
             required
+            onChange={(e) => setEmail(e.target.value)}
             className="bg-transparent border border-gray-500 rounded-md px-3 py-2 focus:outline-none focus:border-black"
           />
 
@@ -37,6 +40,7 @@ function Login() {
               type={showPassword ? "text" : "password"}
               placeholder="Password"
               required
+              onChange={(e) => setPassword(e.target.value)}
               className="bg-transparent border border-gray-500 rounded-md px-3 py-2 w-full focus:outline-none focus:border-black pr-10"
             />
             <span
