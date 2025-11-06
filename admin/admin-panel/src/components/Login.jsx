@@ -31,6 +31,7 @@ function Login() {
             placeholder="Email"
             required
             onChange={(e) => setEmail(e.target.value)}
+            value={email}
             className="bg-transparent border border-gray-500 rounded-md px-3 py-2 focus:outline-none focus:border-black"
           />
 
@@ -41,6 +42,7 @@ function Login() {
               placeholder="Password"
               required
               onChange={(e) => setPassword(e.target.value)}
+              value={password}
               className="bg-transparent border border-gray-500 rounded-md px-3 py-2 w-full focus:outline-none focus:border-black pr-10"
             />
             <span
