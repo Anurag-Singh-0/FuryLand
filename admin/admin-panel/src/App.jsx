@@ -4,6 +4,8 @@ import { AddProduct, Dashboard, ListProduct, Orders } from "./index.js";
 import { useState } from "react";
 import Login from "./components/Login.jsx";
 
+export const backendURL = import.meta.env.VITE_BACKEND_URL;
+
 function App() {
   const [token, setToken] = useState("");
 

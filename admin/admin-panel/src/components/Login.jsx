@@ -1,18 +1,26 @@
 import { useState } from "react";
+import axios from "axios";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import FingerprintIcon from "@mui/icons-material/Fingerprint";
 import Button from "@mui/material/Button";
+import { backendURL } from "../App";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      console.log(email, password);
+
+      const response = await axios.post(backendURL + "/api/user/admin", {
+        email,
+        password,
+      });
+      console.log(response);
+      
     } catch (error) {
       console.log(error);
     }
