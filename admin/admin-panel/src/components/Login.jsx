@@ -10,7 +10,12 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
+      console.log(email, password);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
