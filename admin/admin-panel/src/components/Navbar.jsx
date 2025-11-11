@@ -9,9 +9,9 @@ import {
   Assignment as OrdersIcon,
   Category as ProductsIcon,
   Inventory2 as InventoryIcon,
-} from "@mui/icons-material"; 
+} from "@mui/icons-material";
 
-function Navbar() {
+function Navbar({ setToken }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
@@ -103,6 +103,7 @@ function Navbar() {
             fullWidth
             variant="contained"
             className="!rounded-md !bg-blue-600 !text-white !capitalize"
+            onClick={() => setToken("")}
           >
             Logout
           </Button>
