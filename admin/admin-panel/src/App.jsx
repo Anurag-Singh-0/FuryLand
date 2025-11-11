@@ -28,10 +28,10 @@ function App() {
 
           <div className="flex-1 bg-gray-50 p-6 md:ml-0 mt-16 md:mt-0">
             <Routes>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/add" element={<AddProduct />} />
-              <Route path="/list" element={<ListProduct />} />
-              <Route path="/orders" element={<Orders />} />
+              <Route path="/dashboard" element={<Dashboard token={token} />} />
+              <Route path="/add" element={<AddProduct token={token} />} />
+              <Route path="/list" element={<ListProduct token={token} />} />
+              <Route path="/orders" element={<Orders token={token} />} />
             </Routes>
           </div>
         </>
