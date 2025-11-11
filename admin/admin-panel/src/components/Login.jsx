@@ -5,8 +5,9 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import FingerprintIcon from "@mui/icons-material/Fingerprint";
 import Button from "@mui/material/Button";
 import { backendURL } from "../App";
+import { toast } from "react-toastify";
 
-function Login() {
+function Login({ setToken }) {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,10 +20,15 @@ function Login() {
         email,
         password,
       });
-      console.log(response);
-      
+
+      if (response.data.success) {
+        setToken(response.data.success);
+      } else {
+        toast.error(response.data.message);
+      }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
+      toast.error(error.message);
     }
   };
 
