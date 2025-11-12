@@ -6,28 +6,29 @@ function AddProduct() {
   return (
     <>
       <form className="flex flex-col gap-5 text-gray-700">
+        
         {/* Product Upload Images section */}
         <div>
           <p className="mb-3 text-sm sm:text-md">Upload Image</p>
 
           <div className="flex gap-2 sm:gap-5 justify-between sm:justify-start">
             <label htmlFor="image1" className="">
-              <img src="/upload.png" className="w-20 cursor-pointer" />
+              <img src="/upload.png" className="w-18 cursor-pointer" />
               <input type="file" id="image1" hidden />
             </label>
 
             <label htmlFor="image2" className="">
-              <img src="/upload.png" className="w-20 cursor-pointer" />
+              <img src="/upload.png" className="w-18 cursor-pointer" />
               <input type="file" id="image2" hidden />
             </label>
 
             <label htmlFor="image3" className="">
-              <img src="/upload.png" className="w-20 cursor-pointer" />
+              <img src="/upload.png" className="w-18 cursor-pointer" />
               <input type="file" id="image3" hidden />
             </label>
 
             <label htmlFor="image4" className="">
-              <img src="/upload.png" className="w-20 cursor-pointer" />
+              <img src="/upload.png" className="w-18 cursor-pointer" />
               <input type="file" id="image4" hidden />
             </label>
           </div>
