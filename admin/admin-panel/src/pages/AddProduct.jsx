@@ -1,43 +1,33 @@
 import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Switch from "@mui/material/Switch";
 
 function AddProduct() {
   return (
     <>
-      <form className="flex flex-col gap-5 text-gray-700 p-3 sm:p-8">
+      <form className="flex flex-col gap-5 text-gray-700">
         {/* Product Upload Images section */}
         <div>
           <p className="mb-3 text-sm sm:text-md">Upload Image</p>
 
           <div className="flex gap-2 sm:gap-5 justify-between sm:justify-start">
             <label htmlFor="image1" className="">
-              <img
-                src="../../public/upload.png"
-                className="w-20 cursor-pointer"
-              />
+              <img src="/upload.png" className="w-20 cursor-pointer" />
               <input type="file" id="image1" hidden />
             </label>
 
             <label htmlFor="image2" className="">
-              <img
-                src="../../public/upload.png"
-                className="w-20 cursor-pointer"
-              />
+              <img src="/upload.png" className="w-20 cursor-pointer" />
               <input type="file" id="image2" hidden />
             </label>
 
             <label htmlFor="image3" className="">
-              <img
-                src="../../public/upload.png"
-                className="w-20 cursor-pointer"
-              />
+              <img src="/upload.png" className="w-20 cursor-pointer" />
               <input type="file" id="image3" hidden />
             </label>
 
             <label htmlFor="image4" className="">
-              <img
-                src="../../public/upload.png"
-                className="w-20 cursor-pointer"
-              />
+              <img src="/upload.png" className="w-20 cursor-pointer" />
               <input type="file" id="image4" hidden />
             </label>
           </div>
@@ -99,6 +89,25 @@ function AddProduct() {
         {/* Product choose size section */}
         <div>
           <p className="mb-2 text-sm sm:text-md">Product sizes</p>
+          <div className="flex gap-3">
+            <Button variant="contained">S</Button>
+            <Button variant="contained">M</Button>
+            <Button variant="contained">L</Button>
+            <Button variant="contained">XL</Button>
+            <Button variant="contained">XXL</Button>
+          </div>
+        </div>
+
+        {/* BestSeller section */}
+        <div className="flex items-center justify-center sm:justify-normal">
+          <p>BestSeller</p>
+          <Switch />
+        </div>
+
+        <div className="flex justify-center sm:justify-normal">
+          <Button variant="contained" className="!bg-black">
+            Add Product
+          </Button>
         </div>
       </form>
     </>
