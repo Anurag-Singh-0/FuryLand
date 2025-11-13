@@ -2,6 +2,7 @@ import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Switch from "@mui/material/Switch";
+import { toast } from "react-toastify";
 
 export default function AddProduct() {
   const [images, setImages] = useState([null, null, null, null]);
@@ -30,20 +31,7 @@ export default function AddProduct() {
   // handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const productData = {
-      name,
-      description,
-      price,
-      category,
-      subCategory,
-      bestSeller,
-      sizes,
-      images,
-    };
-
-    console.log("Product Data:", productData);
-    alert("Product added successfully!");
+    toast.success("Product added successfully!");
   };
 
   return (
@@ -106,7 +94,7 @@ export default function AddProduct() {
       </div>
 
       {/* Category, Subcategory, Price */}
-      <div className="flex flex-col sm:flex-row gap-5 w-full">
+      <div className="flex flex-col sm:flex-row gap-5 w-full md:w-[80%]">
         <div className="flex-1">
           <p className="mb-2 text-sm sm:text-md font-medium">Category</p>
           <select
@@ -158,7 +146,7 @@ export default function AddProduct() {
               className={`!rounded-md ${
                 sizes.includes(size)
                   ? "!bg-black !text-white"
-                  : "!bg-gray-200 !text-black"
+                  : "!bg-[#1976D2] !text-white"
               }`}
             >
               {size}
