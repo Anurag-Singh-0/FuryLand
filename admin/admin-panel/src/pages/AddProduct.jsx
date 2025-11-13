@@ -1,14 +1,10 @@
+import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Switch from "@mui/material/Switch";
-import { useState } from "react";
 
-function AddProduct() {
-  const [image1, setImage1] = useState(false);
-  const [image2, setImage2] = useState(false);
-  const [image3, setImage3] = useState(false);
-  const [image4, setImage4] = useState(false);
-
+export default function AddProduct() {
+  const [images, setImages] = useState([null, null, null, null]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -17,161 +13,179 @@ function AddProduct() {
   const [bestSeller, setBestSeller] = useState(false);
   const [sizes, setSizes] = useState([]);
 
+  // handle image upload
+  const handleImageChange = (index, file) => {
+    const updatedImages = [...images];
+    updatedImages[index] = file;
+    setImages(updatedImages);
+  };
+
+  // toggle size selection
+  const toggleSize = (size) => {
+    setSizes((prev) =>
+      prev.includes(size) ? prev.filter((s) => s !== size) : [...prev, size]
+    );
+  };
+
+  // handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const productData = {
+      name,
+      description,
+      price,
+      category,
+      subCategory,
+      bestSeller,
+      sizes,
+      images,
+    };
+
+    console.log("Product Data:", productData);
+    alert("Product added successfully!");
+  };
+
   return (
-    <>
-      <form className="flex flex-col gap-5 text-gray-700">
-        {/* Product Upload Images section */}
-        <div>
-          <p className="mb-3 text-sm sm:text-md">Upload Image</p>
-
-          <div className="flex gap-2 sm:gap-5 justify-between sm:justify-start">
-            <label htmlFor="image1">
+    <form className="flex flex-col gap-6 text-gray-700" onSubmit={handleSubmit}>
+      {/* Upload Images Section */}
+      <div>
+        <p className="mb-3 text-sm sm:text-md font-medium">Upload Images</p>
+        <div className="flex gap-3 sm:gap-5 flex-wrap">
+          {images.map((img, index) => (
+            <label
+              key={index}
+              htmlFor={`image${index}`}
+              className="cursor-pointer"
+            >
               <img
-                src={!image1 ? "/upload.png" : URL.createObjectURL(image1)}
-                className="w-18 cursor-pointer"
+                src={img ? URL.createObjectURL(img) : "/upload.png"}
+                alt={`upload-${index}`}
+                className="w-20 h-20 object-cover rounded border border-gray-300"
               />
               <input
-                onChange={(e) => setImage1(e.target.files[0])}
+                id={`image${index}`}
                 type="file"
-                id="image1"
+                accept="image/*"
                 hidden
+                onChange={(e) => handleImageChange(index, e.target.files[0])}
               />
             </label>
+          ))}
+        </div>
+      </div>
 
-            <label htmlFor="image2">
-              <img
-                src={!image2 ? "/upload.png" : URL.createObjectURL(image2)}
-                className="w-18 cursor-pointer"
-              />
-              <input
-                onChange={(e) => setImage2(e.target.files[0])}
-                type="file"
-                id="image2"
-                hidden
-              />
-            </label>
+      {/* Product Name */}
+      <div className="sm:w-[40vw] w-full">
+        <p className="mb-2 text-sm sm:text-md font-medium">Product Name</p>
+        <TextField
+          label="Enter product name"
+          variant="outlined"
+          className="w-full"
+          required
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </div>
 
-            <label htmlFor="image3">
-              <img
-                src={!image3 ? "/upload.png" : URL.createObjectURL(image3)}
-                className="w-18 cursor-pointer"
-              />
-              <input
-                onChange={(e) => setImage3(e.target.files[0])}
-                type="file"
-                id="image3"
-                hidden
-              />
-            </label>
+      {/* Product Description */}
+      <div className="sm:w-[40vw] w-full">
+        <p className="mb-2 text-sm sm:text-md font-medium">
+          Product Description
+        </p>
+        <TextField
+          label="Write product description"
+          variant="outlined"
+          className="w-full"
+          multiline
+          minRows={3}
+          required
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </div>
 
-            <label htmlFor="image4">
-              <img
-                src={!image4 ? "/upload.png" : URL.createObjectURL(image4)}
-                className="w-18 cursor-pointer"
-              />
-              <input
-                onChange={(e) => setImage4(e.target.files[0])}
-                type="file"
-                id="image4"
-                hidden
-              />
-            </label>
-          </div>
+      {/* Category, Subcategory, Price */}
+      <div className="flex flex-col sm:flex-row gap-5 w-full">
+        <div className="flex-1">
+          <p className="mb-2 text-sm sm:text-md font-medium">Category</p>
+          <select
+            className="bg-gray-100 border border-gray-300 rounded-md w-full p-2 text-sm outline-none cursor-pointer"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="Men">Men</option>
+            <option value="Women">Women</option>
+            <option value="Kids">Kids</option>
+          </select>
         </div>
 
-        {/* Product name input */}
-        <div className="sm:w-[40vw] md:w-100 w-full">
-          <p className="mb-2 text-sm sm:text-md">Product name</p>
-          <TextField
-            id="outlined-basic"
-            label="Type here"
-            variant="outlined"
-            className="w-full"
+        <div className="flex-1">
+          <p className="mb-2 text-sm sm:text-md font-medium">Subcategory</p>
+          <select
+            className="bg-gray-100 border border-gray-300 rounded-md w-full p-2 text-sm outline-none cursor-pointer"
+            value={subCategory}
+            onChange={(e) => setSubCategory(e.target.value)}
+          >
+            <option value="Topwear">Topwear</option>
+            <option value="Bottomwear">Bottomwear</option>
+            <option value="Winterwear">Winterwear</option>
+          </select>
+        </div>
+
+        <div className="flex-1">
+          <p className="mb-2 text-sm sm:text-md font-medium">Price (₹)</p>
+          <input
+            type="number"
+            placeholder="100"
+            className="bg-gray-100 border border-gray-300 rounded-md w-full p-2 text-sm outline-none"
             required
-            onChange={(e) => setName(e.target.value)}
-            value={name}
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
           />
         </div>
+      </div>
 
-        {/* Product description input */}
-        <div className="sm:w-[40vw] md:w-100 w-full">
-          <p className="mb-2 text-sm sm:text-md">Product description</p>
-
-          <TextField
-            id="outlined-textarea"
-            label="Write content here"
-            className="w-full"
-            multiline
-            required
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
-          />
-        </div>
-
-        {/* Product category & price section */}
-        <div className="flex gap-5 w-full flex-col sm:flex-row ">
-          <div>
-            <p className="mb-2 text-sm sm:text-md">Product category</p>
-            <select
-              className="bg-gray-200 border-black/40 border rounded-sm w-full sm:w-30 p-2 text-sm outline-none cursor-pointer"
-              onChange={(e) => setCategory(e.target.value)}
+      {/* Sizes */}
+      <div>
+        <p className="mb-2 text-sm sm:text-md font-medium">Available Sizes</p>
+        <div className="flex gap-3 flex-wrap">
+          {["S", "M", "L", "XL", "XXL"].map((size) => (
+            <Button
+              key={size}
+              variant="contained"
+              onClick={() => toggleSize(size)}
+              className={`!rounded-md ${
+                sizes.includes(size)
+                  ? "!bg-black !text-white"
+                  : "!bg-gray-200 !text-black"
+              }`}
             >
-              <option value="Men">Men</option>
-              <option value="Women">Women</option>
-              <option value="Kids">Kids</option>
-            </select>
-          </div>
-
-          <div>
-            <p className="mb-2 text-sm sm:text-md">Sub category</p>
-            <select
-              className="bg-gray-200 border-black/40 border rounded-sm w-full sm:w-40 p-2 text-sm outline-none cursor-pointer"
-              onChange={(e) => setSubCategory(e.target.value)}
-            >
-              <option value="Topwear">Topwear</option>
-              <option value="Bottomwear">Bottomwear</option>
-              <option value="Winterwear">Winterwear</option>
-            </select>
-          </div>
-
-          <div>
-            <p className="mb-2 text-sm sm:text-md">Price</p>
-            <input
-              type="number"
-              placeholder="100"
-              className="bg-gray-200 border-black/40 border rounded-sm w-full sm:w-20 p-2 text-sm outline-none cursor-pointer"
-              onChange={(e) => setPrice(e.target.value)}
-              value={price}
-            />
-          </div>
+              {size}
+            </Button>
+          ))}
         </div>
+      </div>
 
-        {/* Product choose size section */}
-        <div>
-          <p className="mb-2 text-sm sm:text-md">Product sizes</p>
-          <div className="flex gap-3">
-            <Button variant="contained">S</Button>
-            <Button variant="contained">M</Button>
-            <Button variant="contained">L</Button>
-            <Button variant="contained">XL</Button>
-            <Button variant="contained">XXL</Button>
-          </div>
-        </div>
+      {/* Best Seller */}
+      <div className="flex items-center gap-2">
+        <p className="text-sm sm:text-md font-medium">Best Seller</p>
+        <Switch
+          checked={bestSeller}
+          onChange={(e) => setBestSeller(e.target.checked)}
+        />
+      </div>
 
-        {/* BestSeller section */}
-        <div className="flex items-center justify-center sm:justify-normal">
-          <p>BestSeller</p>
-          <Switch />
-        </div>
-
-        <div className="flex justify-center sm:justify-normal">
-          <Button type="submit" variant="contained" className="!bg-black">
-            Add Product
-          </Button>
-        </div>
-      </form>
-    </>
+      {/* Submit Button */}
+      <div className="flex justify-center sm:justify-start">
+        <Button
+          type="submit"
+          variant="contained"
+          className="!bg-black !text-white !px-8 !py-2 !rounded-md"
+        >
+          Add Product
+        </Button>
+      </div>
+    </form>
   );
 }
-
-export default AddProduct;
