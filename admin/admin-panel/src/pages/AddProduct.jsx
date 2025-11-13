@@ -1,35 +1,80 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Switch from "@mui/material/Switch";
+import { useState } from "react";
 
 function AddProduct() {
+  const [image1, setImage1] = useState(false);
+  const [image2, setImage2] = useState(false);
+  const [image3, setImage3] = useState(false);
+  const [image4, setImage4] = useState(false);
+
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("Men");
+  const [subCategory, setSubCategory] = useState("Topwear");
+  const [bestSeller, setBestSeller] = useState(false);
+  const [sizes, setSizes] = useState([]);
+
   return (
     <>
       <form className="flex flex-col gap-5 text-gray-700">
-        
         {/* Product Upload Images section */}
         <div>
           <p className="mb-3 text-sm sm:text-md">Upload Image</p>
 
           <div className="flex gap-2 sm:gap-5 justify-between sm:justify-start">
-            <label htmlFor="image1" className="">
-              <img src="/upload.png" className="w-18 cursor-pointer" />
-              <input type="file" id="image1" hidden />
+            <label htmlFor="image1">
+              <img
+                src={!image1 ? "/upload.png" : URL.createObjectURL(image1)}
+                className="w-18 cursor-pointer"
+              />
+              <input
+                onChange={(e) => setImage1(e.target.files[0])}
+                type="file"
+                id="image1"
+                hidden
+              />
             </label>
 
-            <label htmlFor="image2" className="">
-              <img src="/upload.png" className="w-18 cursor-pointer" />
-              <input type="file" id="image2" hidden />
+            <label htmlFor="image2">
+              <img
+                src={!image2 ? "/upload.png" : URL.createObjectURL(image2)}
+                className="w-18 cursor-pointer"
+              />
+              <input
+                onChange={(e) => setImage2(e.target.files[0])}
+                type="file"
+                id="image2"
+                hidden
+              />
             </label>
 
-            <label htmlFor="image3" className="">
-              <img src="/upload.png" className="w-18 cursor-pointer" />
-              <input type="file" id="image3" hidden />
+            <label htmlFor="image3">
+              <img
+                src={!image3 ? "/upload.png" : URL.createObjectURL(image3)}
+                className="w-18 cursor-pointer"
+              />
+              <input
+                onChange={(e) => setImage3(e.target.files[0])}
+                type="file"
+                id="image3"
+                hidden
+              />
             </label>
 
-            <label htmlFor="image4" className="">
-              <img src="/upload.png" className="w-18 cursor-pointer" />
-              <input type="file" id="image4" hidden />
+            <label htmlFor="image4">
+              <img
+                src={!image4 ? "/upload.png" : URL.createObjectURL(image4)}
+                className="w-18 cursor-pointer"
+              />
+              <input
+                onChange={(e) => setImage4(e.target.files[0])}
+                type="file"
+                id="image4"
+                hidden
+              />
             </label>
           </div>
         </div>
@@ -42,6 +87,7 @@ function AddProduct() {
             label="Type here"
             variant="outlined"
             className="w-full"
+            required
           />
         </div>
 
@@ -54,6 +100,7 @@ function AddProduct() {
             label="Write content here"
             className="w-full"
             multiline
+            required
           />
         </div>
 
@@ -106,7 +153,7 @@ function AddProduct() {
         </div>
 
         <div className="flex justify-center sm:justify-normal">
-          <Button variant="contained" className="!bg-black">
+          <Button type="submit" variant="contained" className="!bg-black">
             Add Product
           </Button>
         </div>
