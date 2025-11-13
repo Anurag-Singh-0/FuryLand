@@ -88,6 +88,8 @@ function AddProduct() {
             variant="outlined"
             className="w-full"
             required
+            onChange={(e) => setName(e.target.value)}
+            value={name}
           />
         </div>
 
@@ -101,6 +103,8 @@ function AddProduct() {
             className="w-full"
             multiline
             required
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
           />
         </div>
 
@@ -108,7 +112,10 @@ function AddProduct() {
         <div className="flex gap-5 w-full flex-col sm:flex-row ">
           <div>
             <p className="mb-2 text-sm sm:text-md">Product category</p>
-            <select className="bg-gray-200 border-black/40 border rounded-sm w-full sm:w-30 p-2 text-sm outline-none cursor-pointer">
+            <select
+              className="bg-gray-200 border-black/40 border rounded-sm w-full sm:w-30 p-2 text-sm outline-none cursor-pointer"
+              onChange={(e) => setCategory(e.target.value)}
+            >
               <option value="Men">Men</option>
               <option value="Women">Women</option>
               <option value="Kids">Kids</option>
@@ -117,7 +124,10 @@ function AddProduct() {
 
           <div>
             <p className="mb-2 text-sm sm:text-md">Sub category</p>
-            <select className="bg-gray-200 border-black/40 border rounded-sm w-full sm:w-40 p-2 text-sm outline-none cursor-pointer">
+            <select
+              className="bg-gray-200 border-black/40 border rounded-sm w-full sm:w-40 p-2 text-sm outline-none cursor-pointer"
+              onChange={(e) => setSubCategory(e.target.value)}
+            >
               <option value="Topwear">Topwear</option>
               <option value="Bottomwear">Bottomwear</option>
               <option value="Winterwear">Winterwear</option>
@@ -130,6 +140,8 @@ function AddProduct() {
               type="number"
               placeholder="100"
               className="bg-gray-200 border-black/40 border rounded-sm w-full sm:w-20 p-2 text-sm outline-none cursor-pointer"
+              onChange={(e) => setPrice(e.target.value)}
+              value={price}
             />
           </div>
         </div>
