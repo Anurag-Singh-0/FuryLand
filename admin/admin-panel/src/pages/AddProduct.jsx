@@ -29,9 +29,13 @@ export default function AddProduct() {
   };
 
   // handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast.success("Product added successfully!");
+    try {
+      const formDate = new FormDate();
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
