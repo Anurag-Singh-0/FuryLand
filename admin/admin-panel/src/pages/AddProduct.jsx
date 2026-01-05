@@ -3,10 +3,12 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Switch from "@mui/material/Switch";
 import { toast } from "react-toastify";
+import axios from "axios";
+import { backendURL } from "../App.jsx";
 
-export default function AddProduct() {
+export default function AddProduct({ token }) {
   const [images, setImages] = useState([null, null, null, null]);
-  const [name, setName] = useState("");
+  const [brand, setBrand] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("Men");
@@ -31,10 +33,47 @@ export default function AddProduct() {
   // handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const formDate = new FormDate();
+      const formData = new FormData();
+
+      formData.append("brand", brand);
+      formData.append("description", description);
+      formData.append("price", price);
+      formData.append("category", category);
+      formData.append("subCategory", subCategory);
+      formData.append("bestseller", bestSeller ? "true" : "false");
+      formData.append("sizes", JSON.stringify(sizes));
+
+      images.forEach((img, index) => {
+        if (img) {
+          formData.append(`image${index + 1}`, img);
+        }
+      });
+
+      const response = await axios.post(
+        backendURL + "/api/product/add",
+        formData,
+        {
+          headers: {
+            token: token,
+          },
+        }
+      );
+
+      toast.success("Product added successfully!");
+      console.log(response.data);
+      setBrand("");
+      setDescription("");
+      setPrice("");
+      setCategory("Men");
+      setSubCategory("Topwear");
+      setBestSeller(false);
+      setSizes([]);
+      setImages([null, null, null, null]);
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response?.data?.message || error.message);
+      console.log(error.response?.data);
     }
   };
 
@@ -75,8 +114,8 @@ export default function AddProduct() {
           variant="outlined"
           className="w-full"
           required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={brand}
+          onChange={(e) => setBrand(e.target.value)}
         />
       </div>
 

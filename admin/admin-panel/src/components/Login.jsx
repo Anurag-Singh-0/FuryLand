@@ -22,7 +22,8 @@ function Login({ setToken }) {
       });
 
       if (response.data.success) {
-        setToken(response.data.success);
+        setToken(response.data.token);
+        toast.success("Admin logged in");
       } else {
         toast.error(response.data.message);
       }

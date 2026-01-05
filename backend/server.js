@@ -19,7 +19,7 @@ app.use(cors());
 
 // API endpoints
 app.use("/api/user", userRoute);
-app.use("/api/product", productRoute)
+app.use("/api/product", productRoute);
 
 app.get("/api/", (req, res) => {
   res.send("API endpoint is working good!");
