@@ -8,7 +8,7 @@ function Login() {
   const [currentState, setCurrentState] = useState("Sign up");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
   };
 
