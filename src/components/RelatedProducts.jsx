@@ -20,7 +20,7 @@ function RelatedProducts({ category, subCategory, currentProductId }) {
   }, [category, subCategory, currentProductId, Products]);
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-5">
+    <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-4">
       {related.length > 0 ? (
         related
           .slice(0, 5)
@@ -30,6 +30,7 @@ function RelatedProducts({ category, subCategory, currentProductId }) {
               name={product.brand}
               price={product.price}
               image={product.image}
+              desc={product.desc}
               id={product.id}
             />
           ))

@@ -1,4 +1,4 @@
-import BestSeller from "../components/BestSeller";
+// import BestSeller from "../components/BestSeller";
 import Hero from "../components/Hero";
 import LatestCollection from "../components/LatestCollection";
 import NewsletterBox from "../components/NewsletterBox";
@@ -8,7 +8,7 @@ function Home() {
     <div>
       <Hero />
       <LatestCollection />
-      <BestSeller />
+      {/* <BestSeller /> */}
       <NewsletterBox />
     </div>
   );

@@ -1,16 +1,60 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useMemo, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { Products } from "../data/Product.js";
 import { toast } from "react-toastify";
 
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
-  const currency = "$";
-  const delivaryFee = 10;
+  const currency = "₹"; // ₹,  $
+  const delivaryFee = 99;
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [cartItems, setCartItems] = useState({});
+  
+  // NEW: Real-time search states
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [showSearchResults, setShowSearchResults] = useState(false);
+  
+  const navigate = useNavigate();
 
+  // Function to perform real-time search
+  const performSearch = useCallback((query) => {
+    const trimmedQuery = query.trim().toLowerCase();
+    
+    if (trimmedQuery === "") {
+      setSearchResults([]);
+      setShowSearchResults(false);
+      return;
+    }
+
+    const results = Products.filter(product => {
+      const brandMatch = product.brand?.toLowerCase().includes(trimmedQuery);
+      const descMatch = product.desc?.toLowerCase().includes(trimmedQuery);
+      const categoryMatch = product.category?.toLowerCase().includes(trimmedQuery);
+      
+      // Also search in product tags if you have them
+      const tagsMatch = product.tags?.some(tag => 
+        tag.toLowerCase().includes(trimmedQuery)
+      );
+      
+      return brandMatch || descMatch || categoryMatch || tagsMatch;
+    });
+
+    setSearchResults(results.slice(0, 8)); // Limit to 8 results for dropdown
+    setShowSearchResults(true);
+  }, []);
+
+  // Function to clear search
+  const clearSearch = useCallback(() => {
+    setSearchQuery("");
+    setSearchResults([]);
+    setShowSearchResults(false);
+    setShowSearch(false);
+  }, []);
+
+  // Add to cart function
   const addToCart = async (itemId, size) => {
     if (!size) {
       toast.error("Please select size");
@@ -62,6 +106,24 @@ const ShopContextProvider = (props) => {
     return totalCount;
   };
 
+  const getCartTotal = () => {
+    let total = 0;
+
+    // Loop through all products in cart
+    for (const productId in cartItems) {
+      const product = Products.find((p) => p.id === Number(productId));
+      if (product) {
+        // Loop through sizes for this product
+        for (const size in cartItems[productId]) {
+          const quantity = cartItems[productId][size];
+          total += product.price * quantity;
+        }
+      }
+    }
+
+    return total;
+  };
+
   const removeFromCart = (productId, size) => {
     setCartItems((prevItem) => {
       const updatedCart = { ...prevItem };
@@ -79,27 +141,90 @@ const ShopContextProvider = (props) => {
     });
   };
 
-  const updateProductQuantity = (productId, size) => {
-    setCartItems((prev) => {
-      const updatedItem = { ...prev };
+  // Increase quantity
+  const increaseQuantity = (productId, size) => {
+    setCartItems((prevCart) => {
+      if ((prevCart[productId][size] || 0) >= 10) {
+        toast.error("Easy Tiger! That's all we've got for now, Limit reached.");
+        return prevCart;
+      }
 
-
+      return {
+        ...prevCart,
+        [productId]: {
+          ...prevCart[productId],
+          [size]: (prevCart[productId][size] || 0) + 1,
+        },
+      };
     });
   };
 
-  const value = {
+  // Decrease Quantity
+  const decreaseQuantity = (productId, size) => {
+    setCartItems((prevCart) => {
+      const currQuantity = prevCart[productId][size];
+      if (currQuantity > 1) {
+        return {
+          ...prevCart,
+          [productId]: {
+            ...prevCart[productId],
+            [size]: currQuantity - 1,
+          },
+        };
+      } else {
+        const newCart = { ...prevCart };
+        const updatedSizes = { ...newCart[productId] };
+        delete updatedSizes[size];
+
+        if (Object.keys(updatedSizes).length === 0) {
+          delete newCart[productId];
+        } else {
+          newCart[productId] = updatedSizes;
+        }
+        return newCart;
+      }
+    });
+  };
+
+  // Memoized value object
+  const value = useMemo(() => ({
     Products,
     currency,
     delivaryFee,
-    search,
-    setSearch,
+    search, // Keep for backward compatibility with Collection page
+    setSearch, // Keep for backward compatibility
     showSearch,
     setShowSearch,
     cartItems,
     addToCart,
     getCartCount,
+    getCartTotal,
     removeFromCart,
-  };
+    increaseQuantity,
+    decreaseQuantity,
+    navigate,
+    
+    // NEW: Real-time search functionality
+    searchQuery,
+    setSearchQuery,
+    searchResults,
+    showSearchResults,
+    performSearch,
+    clearSearch
+  }), [
+    Products,
+    currency,
+    delivaryFee,
+    search,
+    showSearch,
+    cartItems,
+    navigate,
+    searchQuery,
+    searchResults,
+    showSearchResults,
+    performSearch,
+    clearSearch
+  ]);
 
   return (
     <ShopContext.Provider value={value}>{props.children}</ShopContext.Provider>
