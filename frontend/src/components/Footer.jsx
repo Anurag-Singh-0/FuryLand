@@ -45,7 +45,7 @@ function Footer() {
   };
 
   return (
-    <footer className="bg-gradient-to-b from-gray-50 to-gray-100 border-t border-gray-200">
+    <footer className="bg-gradient-to-b from-gray-50 to-gray-100 border-t border-gray-200 mt-25">
       {/* Main Footer */}
       <div className="py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-6">

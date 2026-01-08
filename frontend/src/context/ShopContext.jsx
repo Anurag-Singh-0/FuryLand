@@ -7,7 +7,7 @@ export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
   const currency = "₹"; // ₹,  $
-  const delivaryFee = 10;
+  const delivaryFee = 99;
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [cartItems, setCartItems] = useState({});
@@ -62,6 +62,24 @@ const ShopContextProvider = (props) => {
 
     // Return the total sum across all products and sizes.
     return totalCount;
+  };
+
+  const getCartTotal = () => {
+    let total = 0;
+
+    // Loop through all products in cart
+    for (const productId in cartItems) {
+      const product = Products.find((p) => p.id === Number(productId));
+      if (product) {
+        // Loop through sizes for this product
+        for (const size in cartItems[productId]) {
+          const quantity = cartItems[productId][size];
+          total += product.price * quantity;
+        }
+      }
+    }
+
+    return total;
   };
 
   const removeFromCart = (productId, size) => {
@@ -137,6 +155,7 @@ const ShopContextProvider = (props) => {
     cartItems,
     addToCart,
     getCartCount,
+    getCartTotal,
     removeFromCart,
     increaseQuantity,
     decreaseQuantity,

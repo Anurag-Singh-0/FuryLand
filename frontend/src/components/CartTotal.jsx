@@ -31,33 +31,50 @@ function CartTotal() {
     0
   );
   const total = subtotal + delivaryFee;
+
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-gray-600 mb-6 uppercase">
-        Cart <span className="text-gray-900">Totals</span>
-      </h1>
+      <h4 className="text-xl font-semibold text-gray-700 mb-4">Cart Totals</h4>
 
-      <div className="border border-gray-300 rounded-2xl p-5 space-y-4">
-        <div className="flex justify-between">
-          <span>Subtotal</span>
-          <span className="font-medium">
+      <div className="p-6 rounded-xl border border-gray-300">
+        {/* Subtotal */}
+        <div className="flex justify-between mb-4">
+          <span className="text-gray-600">Subtotal</span>
+          <span className="font-semibold">
             {currency}
             {subtotal.toFixed(2)}
           </span>
         </div>
-        <div className="flex justify-between">
-          <span>Shipping Fee</span>
-          <span className="font-medium">
-            {currency}
-            {delivaryFee.toFixed(2)}
+
+        {/* Delivery Fee */}
+        <div className="flex justify-between mb-4">
+          <span className="text-gray-600">Shipping Fee</span>
+          <span className="font-semibold">
+            {subtotal >= 1999 ? (
+              <>Free</>
+            ) : (
+              <>
+                {currency}
+                {delivaryFee.toFixed(2)}
+              </>
+            )}
           </span>
         </div>
-        <hr />
-        <div className="flex justify-between text-lg font-semibold">
-          <span>Total</span>
-          <span>
-            {currency}
-            {total.toFixed(2)}
+
+        <hr className="my-4" />
+
+        {/* Total */}
+        <div className="flex justify-between">
+          <span className="text-xl font-bold text-gray-900">Total</span>
+          <span className="text-xl font-bold text-gray-900">
+            {total >= 1999 ? (
+              <>{currency}{subtotal.toFixed(2)}</>
+            ) : (
+              <>
+                {currency}
+                {total.toFixed(2)}
+              </>
+            )}
           </span>
         </div>
       </div>
