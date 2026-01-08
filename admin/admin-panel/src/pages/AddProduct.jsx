@@ -16,7 +16,7 @@ import {
   Layers,
   Zap,
   Eye,
-  CheckCircle
+  CheckCircle,
 } from "lucide-react";
 
 export default function AddProduct({ token }) {
@@ -29,27 +29,35 @@ export default function AddProduct({ token }) {
   const [bestSeller, setBestSeller] = useState(false);
   const [sizes, setSizes] = useState([]);
   const [loading, setLoading] = useState(false);
-  
+
   // Category to subcategory mapping
   const subCategories = {
     Men: ["Topwear", "Bottomwear", "Winterwear", "Footwear", "Accessories"],
-    Women: ["Topwear", "Bottomwear", "Dresses", "Winterwear", "Footwear", "Accessories"],
-    Kids: ["Topwear", "Bottomwear", "Winterwear", "Footwear", "Accessories"]
+    Women: [
+      "Topwear",
+      "Bottomwear",
+      "Dresses",
+      "Winterwear",
+      "Footwear",
+      "Accessories",
+    ],
+    Kids: ["Topwear", "Bottomwear", "Winterwear", "Footwear", "Accessories"],
   };
 
   // handle image upload
   const handleImageChange = (index, file) => {
     if (file) {
-      if (!file.type.startsWith('image/')) {
+      if (!file.type.startsWith("image/")) {
         toast.error("Please upload only image files");
         return;
       }
-      
-      if (file.size > 5 * 1024 * 1024) { // 5MB limit
+
+      if (file.size > 5 * 1024 * 1024) {
+        // 5MB limit
         toast.error("Image size should be less than 5MB");
         return;
       }
-      
+
       const updatedImages = [...images];
       updatedImages[index] = file;
       setImages(updatedImages);
@@ -102,7 +110,7 @@ export default function AddProduct({ token }) {
       return;
     }
 
-    if (images.every(img => img === null)) {
+    if (images.every((img) => img === null)) {
       toast.error("Please upload at least one image");
       setLoading(false);
       return;
@@ -131,13 +139,13 @@ export default function AddProduct({ token }) {
         {
           headers: {
             token: token,
-            'Content-Type': 'multipart/form-data'
+            "Content-Type": "multipart/form-data",
           },
         }
       );
 
       toast.success("🎉 Product added successfully!");
-      
+
       // Reset form
       setBrand("");
       setDescription("");
@@ -147,9 +155,11 @@ export default function AddProduct({ token }) {
       setBestSeller(false);
       setSizes([]);
       setImages([null, null, null, null]);
-      
     } catch (error) {
-      toast.error(error.response?.data?.message || "Failed to add product. Please try again.");
+      toast.error(
+        error.response?.data?.message ||
+          "Failed to add product. Please try again."
+      );
       console.error("Add product error:", error);
     } finally {
       setLoading(false);
@@ -170,7 +180,7 @@ export default function AddProduct({ token }) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4 md:p-6">
+    <div className="min-h-screen  p-4 md:p-6 ">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -183,7 +193,8 @@ export default function AddProduct({ token }) {
             </h1>
           </div>
           <p className="text-gray-600">
-            Add new products to your e-commerce store. Fill in all required details below.
+            Add new products to your e-commerce store. Fill in all required
+            details below.
           </p>
         </div>
 
@@ -201,16 +212,16 @@ export default function AddProduct({ token }) {
               <p className="text-sm text-gray-500 mb-6">
                 Upload up to 4 images. First image will be displayed as main.
               </p>
-              
+
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {images.map((img, index) => (
                   <div key={index} className="relative group">
                     <label
                       htmlFor={`image${index}`}
                       className={`block cursor-pointer border-2 border-dashed rounded-xl overflow-hidden transition-all duration-200 ${
-                        img 
-                          ? 'border-gray-300' 
-                          : 'border-gray-200 hover:border-blue-400 hover:bg-blue-50'
+                        img
+                          ? "border-gray-300"
+                          : "border-gray-200 hover:border-blue-400 hover:bg-blue-50"
                       }`}
                     >
                       <div className="aspect-square flex items-center justify-center">
@@ -235,7 +246,7 @@ export default function AddProduct({ token }) {
                         )}
                       </div>
                     </label>
-                    
+
                     {img && (
                       <button
                         type="button"
@@ -245,13 +256,15 @@ export default function AddProduct({ token }) {
                         <X className="w-4 h-4" />
                       </button>
                     )}
-                    
+
                     <input
                       id={`image${index}`}
                       type="file"
                       accept="image/*"
                       className="hidden"
-                      onChange={(e) => handleImageChange(index, e.target.files[0])}
+                      onChange={(e) =>
+                        handleImageChange(index, e.target.files[0])
+                      }
                     />
                   </div>
                 ))}
@@ -266,7 +279,7 @@ export default function AddProduct({ token }) {
                   Basic Information
                 </h2>
               </div>
-              
+
               <div className="space-y-6">
                 {/* Brand */}
                 <div>
@@ -443,12 +456,18 @@ export default function AddProduct({ token }) {
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
                   <div className="flex items-center gap-3 mb-2">
-                    <div className={`p-2 rounded-lg ${
-                      bestSeller ? "bg-yellow-100" : "bg-gray-100"
-                    }`}>
-                      <Star className={`w-5 h-5 ${
-                        bestSeller ? "text-yellow-600 fill-yellow-600" : "text-gray-400"
-                      }`} />
+                    <div
+                      className={`p-2 rounded-lg ${
+                        bestSeller ? "bg-yellow-100" : "bg-gray-100"
+                      }`}
+                    >
+                      <Star
+                        className={`w-5 h-5 ${
+                          bestSeller
+                            ? "text-yellow-600 fill-yellow-600"
+                            : "text-gray-400"
+                        }`}
+                      />
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900">
@@ -503,7 +522,7 @@ export default function AddProduct({ token }) {
                     </>
                   )}
                 </button>
-                
+
                 <button
                   type="button"
                   onClick={handleReset}
@@ -526,7 +545,7 @@ export default function AddProduct({ token }) {
                     Live Preview
                   </h2>
                 </div>
-                
+
                 <div className="space-y-4">
                   {/* Preview Image */}
                   <div className="aspect-square bg-gray-100 rounded-xl overflow-hidden">
@@ -560,11 +579,15 @@ export default function AddProduct({ token }) {
                           {price ? `₹${price}` : "₹0"}
                         </span>
                       </div>
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        category === 'Men' ? 'bg-blue-100 text-blue-800' :
-                        category === 'Women' ? 'bg-pink-100 text-pink-800' :
-                        'bg-green-100 text-green-800'
-                      }`}>
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-medium ${
+                          category === "Men"
+                            ? "bg-blue-100 text-blue-800"
+                            : category === "Women"
+                            ? "bg-pink-100 text-pink-800"
+                            : "bg-green-100 text-green-800"
+                        }`}
+                      >
                         {category || "Category"}
                       </span>
                     </div>
@@ -580,9 +603,11 @@ export default function AddProduct({ token }) {
                     {/* Sizes Preview */}
                     {sizes.length > 0 && (
                       <div>
-                        <p className="text-sm font-medium text-gray-700 mb-2">Available Sizes:</p>
+                        <p className="text-sm font-medium text-gray-700 mb-2">
+                          Available Sizes:
+                        </p>
                         <div className="flex flex-wrap gap-2">
-                          {sizes.slice(0, 5).map(size => (
+                          {sizes.slice(0, 5).map((size) => (
                             <span
                               key={size}
                               className="px-2.5 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium"
@@ -610,21 +635,28 @@ export default function AddProduct({ token }) {
                     )}
 
                     {/* Additional Images */}
-                    {images.filter(img => img !== null).length > 1 && (
+                    {images.filter((img) => img !== null).length > 1 && (
                       <div className="pt-3 border-t border-gray-200">
                         <p className="text-sm font-medium text-gray-700 mb-2">
-                          Additional Images ({images.filter(img => img !== null).length - 1})
+                          Additional Images (
+                          {images.filter((img) => img !== null).length - 1})
                         </p>
                         <div className="flex gap-2 overflow-x-auto pb-2">
-                          {images.slice(1).filter(img => img !== null).map((img, idx) => (
-                            <div key={idx} className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
-                              <img
-                                src={URL.createObjectURL(img)}
-                                alt={`Additional ${idx + 1}`}
-                                className="w-full h-full object-cover"
-                              />
-                            </div>
-                          ))}
+                          {images
+                            .slice(1)
+                            .filter((img) => img !== null)
+                            .map((img, idx) => (
+                              <div
+                                key={idx}
+                                className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0"
+                              >
+                                <img
+                                  src={URL.createObjectURL(img)}
+                                  alt={`Additional ${idx + 1}`}
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                            ))}
                         </div>
                       </div>
                     )}
@@ -638,7 +670,7 @@ export default function AddProduct({ token }) {
                   <Zap className="w-5 h-5 text-blue-600" />
                   <h3 className="font-semibold text-gray-900">Quick Tips</h3>
                 </div>
-                
+
                 <ul className="space-y-3">
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
@@ -678,55 +710,62 @@ export default function AddProduct({ token }) {
                 <h3 className="font-semibold text-gray-900 mb-4">
                   Form Completion
                 </h3>
-                
+
                 <div className="space-y-4">
                   {[
-                    { 
-                      label: "Product Images", 
-                      completed: images.some(img => img !== null),
-                      required: true 
+                    {
+                      label: "Product Images",
+                      completed: images.some((img) => img !== null),
+                      required: true,
                     },
-                    { 
-                      label: "Brand Name", 
+                    {
+                      label: "Brand Name",
                       completed: !!brand.trim(),
-                      required: true 
+                      required: true,
                     },
-                    { 
-                      label: "Description", 
+                    {
+                      label: "Description",
                       completed: !!description.trim(),
-                      required: true 
+                      required: true,
                     },
-                    { 
-                      label: "Price", 
+                    {
+                      label: "Price",
                       completed: !!price && Number(price) > 0,
-                      required: true 
+                      required: true,
                     },
-                    { 
-                      label: "Sizes", 
+                    {
+                      label: "Sizes",
                       completed: sizes.length > 0,
-                      required: true 
+                      required: true,
                     },
-                    { 
-                      label: "Categories", 
+                    {
+                      label: "Categories",
                       completed: !!category && !!subCategory,
-                      required: true 
+                      required: true,
                     },
-                    { 
-                      label: "Best Seller", 
+                    {
+                      label: "Best Seller",
                       completed: true, // Optional field
-                      required: false 
-                    }
+                      required: false,
+                    },
                   ].map((item, index) => (
-                    <div key={index} className="flex items-center justify-between">
+                    <div
+                      key={index}
+                      className="flex items-center justify-between"
+                    >
                       <div className="flex items-center gap-2">
-                        <span className="text-sm text-gray-700">{item.label}</span>
+                        <span className="text-sm text-gray-700">
+                          {item.label}
+                        </span>
                         {item.required && (
                           <span className="text-xs text-red-500">*</span>
                         )}
                       </div>
-                      <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
-                        item.completed ? "bg-green-100" : "bg-gray-100"
-                      }`}>
+                      <div
+                        className={`w-6 h-6 rounded-full flex items-center justify-center ${
+                          item.completed ? "bg-green-100" : "bg-gray-100"
+                        }`}
+                      >
                         {item.completed ? (
                           <CheckCircle className="w-4 h-4 text-green-600" />
                         ) : (
@@ -744,28 +783,37 @@ export default function AddProduct({ token }) {
                       Completion
                     </span>
                     <span className="text-sm font-bold text-blue-600">
-                      {Math.round(([
-                        images.some(img => img !== null),
-                        !!brand.trim(),
-                        !!description.trim(),
-                        !!price && Number(price) > 0,
-                        sizes.length > 0,
-                        !!category && !!subCategory
-                      ].filter(Boolean).length / 6) * 100)}%
-                    </span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div 
-                      className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-                      style={{ 
-                        width: `${([
-                          images.some(img => img !== null),
+                      {Math.round(
+                        ([
+                          images.some((img) => img !== null),
                           !!brand.trim(),
                           !!description.trim(),
                           !!price && Number(price) > 0,
                           sizes.length > 0,
-                          !!category && !!subCategory
-                        ].filter(Boolean).length / 6) * 100}%` 
+                          !!category && !!subCategory,
+                        ].filter(Boolean).length /
+                          6) *
+                          100
+                      )}
+                      %
+                    </span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                      style={{
+                        width: `${
+                          ([
+                            images.some((img) => img !== null),
+                            !!brand.trim(),
+                            !!description.trim(),
+                            !!price && Number(price) > 0,
+                            sizes.length > 0,
+                            !!category && !!subCategory,
+                          ].filter(Boolean).length /
+                            6) *
+                          100
+                        }%`,
                       }}
                     ></div>
                   </div>
