@@ -202,8 +202,6 @@ CartItem.displayName = "CartItem";
 // MAIN CART COMPONENT
 // ==============================================
 
-
-
 function Cart() {
   const navigate = useNavigate();
   const { currency } = useContext(ShopContext);
@@ -332,7 +330,23 @@ function Cart() {
     return (
       <div className="w-full py-16">
         <div className="flex flex-col items-center text-center py-12">
-          <ShoppingBagOutlined className="text-6xl text-blue-300 mb-8" />
+          <AnimatePresence>
+            <motion.span
+              animate={{
+                y: [0, -30, 0],
+                scaleY: [1, 1.1, 0.95, 1],
+                scaleX: [1, 0.95, 1.05, 1],
+              }}
+              transition={{
+                duration: 0.9,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="mb-10 lg:mb-20"
+            >
+              <ShoppingBagOutlined className="scale-300 lg:scale-500 text-blue-600" />
+            </motion.span>
+          </AnimatePresence>
 
           <h1 className="text-4xl font-extrabold text-gray-900 mb-4">
             Your Cart is Empty
@@ -378,7 +392,9 @@ function Cart() {
                   <LocalShipping className="text-3xl" />
                   <div>
                     <p className="font-semibold">Free Shipping</p>
-                    <p className="text-sm text-blue-100">On orders over {currency}1999</p>
+                    <p className="text-sm text-blue-100">
+                      On orders over {currency}1999
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">

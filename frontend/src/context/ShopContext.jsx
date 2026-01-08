@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Products } from "../data/Product.js";
 import { toast } from "react-toastify";
@@ -11,8 +11,50 @@ const ShopContextProvider = (props) => {
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [cartItems, setCartItems] = useState({});
+  
+  // NEW: Real-time search states
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [showSearchResults, setShowSearchResults] = useState(false);
+  
   const navigate = useNavigate();
 
+  // Function to perform real-time search
+  const performSearch = useCallback((query) => {
+    const trimmedQuery = query.trim().toLowerCase();
+    
+    if (trimmedQuery === "") {
+      setSearchResults([]);
+      setShowSearchResults(false);
+      return;
+    }
+
+    const results = Products.filter(product => {
+      const brandMatch = product.brand?.toLowerCase().includes(trimmedQuery);
+      const descMatch = product.desc?.toLowerCase().includes(trimmedQuery);
+      const categoryMatch = product.category?.toLowerCase().includes(trimmedQuery);
+      
+      // Also search in product tags if you have them
+      const tagsMatch = product.tags?.some(tag => 
+        tag.toLowerCase().includes(trimmedQuery)
+      );
+      
+      return brandMatch || descMatch || categoryMatch || tagsMatch;
+    });
+
+    setSearchResults(results.slice(0, 8)); // Limit to 8 results for dropdown
+    setShowSearchResults(true);
+  }, []);
+
+  // Function to clear search
+  const clearSearch = useCallback(() => {
+    setSearchQuery("");
+    setSearchResults([]);
+    setShowSearchResults(false);
+    setShowSearch(false);
+  }, []);
+
+  // Add to cart function
   const addToCart = async (itemId, size) => {
     if (!size) {
       toast.error("Please select size");
@@ -103,7 +145,7 @@ const ShopContextProvider = (props) => {
   const increaseQuantity = (productId, size) => {
     setCartItems((prevCart) => {
       if ((prevCart[productId][size] || 0) >= 10) {
-        toast.error("Easy Tiger! That’s all we’ve got for now, Limit reached.");
+        toast.error("Easy Tiger! That's all we've got for now, Limit reached.");
         return prevCart;
       }
 
@@ -144,12 +186,13 @@ const ShopContextProvider = (props) => {
     });
   };
 
-  const value = {
+  // Memoized value object
+  const value = useMemo(() => ({
     Products,
     currency,
     delivaryFee,
-    search,
-    setSearch,
+    search, // Keep for backward compatibility with Collection page
+    setSearch, // Keep for backward compatibility
     showSearch,
     setShowSearch,
     cartItems,
@@ -160,7 +203,28 @@ const ShopContextProvider = (props) => {
     increaseQuantity,
     decreaseQuantity,
     navigate,
-  };
+    
+    // NEW: Real-time search functionality
+    searchQuery,
+    setSearchQuery,
+    searchResults,
+    showSearchResults,
+    performSearch,
+    clearSearch
+  }), [
+    Products,
+    currency,
+    delivaryFee,
+    search,
+    showSearch,
+    cartItems,
+    navigate,
+    searchQuery,
+    searchResults,
+    showSearchResults,
+    performSearch,
+    clearSearch
+  ]);
 
   return (
     <ShopContext.Provider value={value}>{props.children}</ShopContext.Provider>
